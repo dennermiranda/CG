@@ -12,7 +12,7 @@
 
 using namespace std;
 
-struct RGB {
+struct RGBType {
     double r;
     double g;
     double b;
@@ -94,7 +94,8 @@ void saveBMP(const std::string filename, int w, int h, int dpi, RGBType* data){
 
     std::fclose(file);
 }
-
+//Pixel position "thisone"
+int px;
 int main(int argc, char *argv[])
 {
     cout << "Rendering" << endl;
@@ -102,9 +103,15 @@ int main(int argc, char *argv[])
     int width = 640;
     int height = 480;
 
+    int n = width*height;
+
+    RGBType *pixels = new RGBType[n];
+
     for (int x = 0; x< width; c++){
 
         for (int y = 0; y< height; c++){
+
+            px = y*width+x;
             //return colour
         }
     }
