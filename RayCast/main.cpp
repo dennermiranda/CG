@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <string>
+#include <cstring>
 #include <vector>
 #include <cmath>
 #include <limits>
@@ -100,6 +100,7 @@ int main(int argc, char *argv[])
 {
     cout << "Rendering" << endl;
 
+    int dpi = 72;
     int width = 640;
     int height = 480;
 
@@ -107,14 +108,27 @@ int main(int argc, char *argv[])
 
     RGBType *pixels = new RGBType[n];
 
-    for (int x = 0; x< width; c++){
+    for (int x = 0; x< width; x++){
 
-        for (int y = 0; y< height; c++){
-
-            px = y*width+x;
+        for (int y = 0; y< height; y++){
             //return colour
+            px = y*width+x;
+
+            if((x>200 && x<440) && (y>200 && y < 280)){
+                pixels[px].r = 50;
+                pixels[px].g = 10;
+                pixels[px].b = 120;
+            }
+            else{
+                pixels[px].r = 0;
+                pixels[px].g = 0;
+                pixels[px].b = 0;
+            }
+
         }
     }
+
+    saveBMP("scene.bmp", width, height, dpi, pixels);
 
     return 0;
 }
