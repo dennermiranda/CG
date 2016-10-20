@@ -10,4 +10,7 @@ HEADERS += \
     Ray.h \
     Camera.h \
     Color.h \
-    Light.h
+    Light.h \
+    Sphere.h \
+    Object.h \
+    Plane.h

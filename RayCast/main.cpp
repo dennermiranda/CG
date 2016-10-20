@@ -15,6 +15,9 @@
 #include "Camera.h"
 #include "Color.h"
 #include "Light.h"
+#include "Sphere.h"
+#include "Object.h"
+#include "Plane.h"
 
 using namespace std;
 
@@ -114,6 +117,7 @@ int main(int argc, char *argv[])
 
     RGBType *pixels = new RGBType[n];
 
+    Vect O (0,0,0); //Origin vector
     Vect X (1,0,0);
     Vect Y (0,1,0);
     Vect Z (0,0,1);
@@ -130,18 +134,24 @@ int main(int argc, char *argv[])
 
     Camera scene_cam(campos, camdir, camright, camdown);
 
-    /*Creating our colors*/
+    //Creating our colors
 
     Color white_light (1.0, 1.0, 1.0, 0);
     Color pretty_green (0.5, 1.0, 0.5, 0.3);
+    Color maroon (0.5, 0.25, 0.25, 0);
     Color gray (0.5, 0.5, 0.5, 0);
     Color black(0.0, 0.0, 0.0, 0);
 
 
-    /*Creating our light source*/
+    //Creating our light source
 
     Vect light_position (-7,10,-10);
     Light scene_light (light_position, white_light);
+
+    //Creating scene objects
+
+    Sphere scene_sphere (O, 1, pretty_green); //(position, radius, color);
+    Plane scene_plane (Y,  -1, maroon); //(up and down direction of the scene, distance from the center of our plane to the center of the scene (right beneath the sphere), color)
 
     for (int x = 0; x< width; x++){
 
