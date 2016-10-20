@@ -1,7 +1,6 @@
 #ifndef _RAY_H
 #define _RAY_H
 
-
 #include "Vect.h"
 
 class Ray {
@@ -26,8 +25,8 @@ Ray::Ray (){
 }
 
 Ray::Ray (Vect v1, Vect v2){
-    origin = v1;
-    direction = v2;
+    origin = v1; //vector origin o
+    direction = v2; //vector direction d
 }
 
 #endif

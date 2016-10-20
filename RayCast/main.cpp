@@ -12,6 +12,9 @@
 
 #include "Vect.h"
 #include "Ray.h"
+#include "Camera.h"
+#include "Color.h"
+#include "Light.h"
 
 using namespace std;
 
@@ -110,6 +113,35 @@ int main(int argc, char *argv[])
     int n = width*height;
 
     RGBType *pixels = new RGBType[n];
+
+    Vect X (1,0,0);
+    Vect Y (0,1,0);
+    Vect Z (0,0,1);
+
+    Vect campos (3, 1.5, -4);
+
+    Vect look_at (0,0,0);
+
+    Vect diff_btw (campos.getVectX() - look_at.getVectX(), campos.getVectY() - look_at.getVectY(), campos.getVectZ() - look_at.getVectZ()); // difference
+
+    Vect camdir = diff_btw.negative().normalize(); //camera direction normalized
+    Vect camright = Y.crossProduct(camdir).normalize(); //camera right normalized
+    Vect camdown = camright.crossProduct(camdir);
+
+    Camera scene_cam(campos, camdir, camright, camdown);
+
+    /*Creating our colors*/
+
+    Color white_light (1.0, 1.0, 1.0, 0);
+    Color pretty_green (0.5, 1.0, 0.5, 0.3);
+    Color gray (0.5, 0.5, 0.5, 0);
+    Color black(0.0, 0.0, 0.0, 0);
+
+
+    /*Creating our light source*/
+
+    Vect light_position (-7,10,-10);
+    Light scene_light (light_position, white_light);
 
     for (int x = 0; x< width; x++){
 

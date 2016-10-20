@@ -7,4 +7,7 @@ SOURCES += main.cpp
 
 HEADERS += \
     Vect.h \
-    Ray.h
+    Ray.h \
+    Camera.h \
+    Color.h \
+    Light.h
