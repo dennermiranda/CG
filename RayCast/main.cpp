@@ -128,9 +128,9 @@ int main(int argc, char *argv[])
 
     Vect diff_btw (campos.getVectX() - look_at.getVectX(), campos.getVectY() - look_at.getVectY(), campos.getVectZ() - look_at.getVectZ()); // difference
 
-    Vect camdir = diff_btw.negative().normalize(); //camera direction normalized
-    Vect camright = Y.crossProduct(camdir).normalize(); //camera right normalized
-    Vect camdown = camright.crossProduct(camdir);
+    Vect camdir = diff_btw.negative().normalize(); //camera direction normalized //k?
+    Vect camright = Y.crossProduct(camdir).normalize(); //camera right normalized //i?
+    Vect camdown = camright.crossProduct(camdir); //j?
 
     Camera scene_cam(campos, camdir, camright, camdown);
 
