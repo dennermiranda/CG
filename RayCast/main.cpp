@@ -119,6 +119,7 @@ int main(int argc, char *argv[])
 
     Vect O (0,0,0); //Origin vector
     Vect X (1,0,0);
+    //ViewUp
     Vect Y (0,1,0);
     Vect Z (0,0,1);
 
