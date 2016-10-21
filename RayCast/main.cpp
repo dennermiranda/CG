@@ -130,7 +130,8 @@ int winningObjectIndex(vector<double> object_intersections) {
     }else{ //there is more than one intersections
 
         double max = 0;
-        for (int i = 0 ; i < object_intersections.size() ; i++) {
+
+        for (int i = 0; i < object_intersections.size(); i++) {
             if (max < object_intersections.at(i)){
                 max = object_intersections.at(i); //the pixels color will be the same as this obj
             }
@@ -139,7 +140,7 @@ int winningObjectIndex(vector<double> object_intersections) {
         //Then starting from the maximum value find the minimum position
         if (max > 0){//We only want positive intersections
 
-            for (int index = 0; index <object_intersections.size(); index++) {
+            for (int index = 0; index < object_intersections.size(); index++) {
                 if (object_intersections.at(index) > 0 && object_intersections.at(index) <= max){
                     max = object_intersections.at(index);
                     index_of_minimum_value = index;
