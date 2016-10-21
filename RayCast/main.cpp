@@ -179,6 +179,7 @@ int main(int argc, char *argv[])
     Vect Y (0,1,0);
     Vect Z (0,0,1);
 
+//    Vect campos (3, 1.5, 4);
     Vect campos (3, 1.5, -4);
 
     Vect look_at (0,0,0);
