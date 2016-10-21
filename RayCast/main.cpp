@@ -245,8 +245,7 @@ int main(int argc, char *argv[])
 
             Ray cam_ray (cam_ray_origin, cam_ray_direction); //A specific camera ray is going through this specific xy pixel into the scene to look for intersections options
 
-
-           //Creating an "array" of intersections since now we've got rays going through
+            //Creating an "array" of intersections since now we've got rays going through
             vector<double> intersections;
 
             //Checking if the ray which the loop is currently dealing with intersecs with any objects in the scene
@@ -256,16 +255,34 @@ int main(int argc, char *argv[])
 
             int index_of_winning_object = winningObjectIndex(intersections); //Checking which object is the closest to the camera
 
-            if((x>200 && x<440) && (y>200 && y < 280)){
-                pixels[px].r = 50;
-                pixels[px].g = 10;
-                pixels[px].b = 120;
-            }
-            else{
+            //cout << index_of_winning_object;
+
+//            if((x>200 && x<440) && (y>200 && y < 280)){
+//                pixels[px].r = 50;
+//                pixels[px].g = 10;
+//                pixels[px].b = 120;
+//            }
+//            else{
+//                pixels[px].r = 0;
+//                pixels[px].g = 0;
+//                pixels[px].b = 0;
+//            }
+
+            if (index_of_winning_object == -1) { //setting the background color to black
                 pixels[px].r = 0;
                 pixels[px].g = 0;
                 pixels[px].b = 0;
+
+            }else{ //setting the color of the obj
+
+                Color this_color = scene_objects.at(index_of_winning_object)->getColor();
+
+                pixels[px].r = this_color.getColorRed();
+                pixels[px].g = this_color.getColorGreen();
+                pixels[px].b = this_color.getColorBlue();
+
             }
+
 
         }
     }

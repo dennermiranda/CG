@@ -12,9 +12,9 @@ class Object {
 
     //Get functions
 
-    Color getObjectColor(){ return Color (0.0, 0.0, 0.0, 0); }
+    virtual Color getColor(){ return Color (0.0, 0.0, 0.0, 0); }
 
-    double findIntersection (Ray ray) { //To return the intersection that ray makes with object
+    virtual double findIntersection (Ray ray) { //To return the intersection that ray makes with object
         return 0;
     }
 };

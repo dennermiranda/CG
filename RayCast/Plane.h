@@ -21,7 +21,7 @@ class Plane : public Object {
 
     Vect getPlaneNormal(){ return normal; }
     double getPlaneDistance(){ return distance; }
-    Color getPlaneColor(){ return color; }
+    virtual Color getColor(){ return color; }
 
     //Calculating the reflexions
 
@@ -30,7 +30,7 @@ class Plane : public Object {
         return normal;
     }
 
-    double findIntersection(Ray ray) { //double means the distance from the ray origin to the point of intersection
+    virtual double findIntersection(Ray ray) { //double means the distance from the ray origin to the point of intersection
         Vect ray_direction = ray.getRayDirection();
 
         //Remembering that the ray (from the camera) will terminate at the intersection point if the ray intersects something
