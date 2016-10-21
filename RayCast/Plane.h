@@ -38,7 +38,9 @@ class Plane : public Object {
 
         if  (a == 0 ){ //it means the the ray is parallel to the plane so it nevers intersects
             return -1;
-        }else{
+
+        }else{//Finding the intersection between rays and the plane
+
             double b = normal.dotProduct(ray.getRayOrigin().vectAdd(normal.vectMult(distance).negative()));
             //dot product between the normal vector and another vector witch is the result of ...????
             //negative because is in the oposite direction of the origin from the ray
