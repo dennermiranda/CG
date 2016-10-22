@@ -162,7 +162,7 @@ int px;
 
 int main(int argc, char *argv[])
 {
-    cout << "Rendering" << endl;
+    cout << "Rendering..." << endl;
 
     int dpi = 72;
     int width = 640;
@@ -175,8 +175,7 @@ int main(int argc, char *argv[])
 
     Vect O (0,0,0); //Origin vector
     Vect X (1,0,0);
-    //ViewUp
-    Vect Y (0,1,0);
+    Vect Y (0,1,0); //ViewUp
     Vect Z (0,0,1);
 
 //    Vect campos (3, 1.5, 4);

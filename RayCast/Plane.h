@@ -30,7 +30,7 @@ class Plane : public Object {
         return normal;
     }
 
-    virtual double findIntersection(Ray ray) { //double means the distance from the ray origin to the point of intersection
+    virtual double findIntersection (Ray ray) { //double means the distance from the ray origin to the point of intersection
         Vect ray_direction = ray.getRayDirection();
 
         //Remembering that the ray (from the camera) will terminate at the intersection point if the ray intersects something
