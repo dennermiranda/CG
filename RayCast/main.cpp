@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
     Color pretty_green (0.5, 1.0, 0.5, 0.3);
     Color maroon (0.5, 0.25, 0.25, 0);
     Color gray (0.5, 0.5, 0.5, 0);
-    Color black(0.0, 0.0, 0.0, 0);
+    Color black (0.0, 0.0, 0.0, 0);
 
 
     //Creating our light source
@@ -218,10 +218,9 @@ int main(int argc, char *argv[])
     double xamnt, yamnt;
 
     for (int x = 0; x< width; x++){
-
         for (int y = 0; y< height; y++){
             //return colour
-            px = y*width+x;
+            px = y*width + x;
 
             //start with no anti-aliasing
             if (width > height) {

@@ -2,7 +2,7 @@
 #define COLOR_H
 
 class Color {
-    double red , green, blue, special;
+    double red, green, blue, special;
 
     public:
 

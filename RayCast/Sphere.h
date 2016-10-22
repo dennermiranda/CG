@@ -15,7 +15,7 @@ class Sphere : public Object {
 
     Sphere();
 
-    Sphere(Vect, double, Color);
+    Sphere (Vect, double, Color);
 
     //Get functions
 
