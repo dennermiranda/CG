@@ -4,7 +4,8 @@
 #include "Vect.h"
 
 class Camera {
-    Vect campos, camdir, camright, camdown;
+
+    Vect camPosition, camDirection, camRight, camDown;
 
     public:
 
@@ -12,27 +13,25 @@ class Camera {
 
     Camera(Vect, Vect, Vect, Vect);
 
-    //Get functions
-
-    Vect getCameraPosition() {return campos;}
-    Vect getCameraDirection() {return camdir;}
-    Vect getCameraRight() {return camright;}
-    Vect getCameraDown() {return camdown;}
+    Vect getCameraPosition() {return camPosition;}
+    Vect getCameraDirection() {return camDirection;}
+    Vect getCameraRight() {return camRight;}
+    Vect getCameraDown() {return camDown;}
 
 };
 
 Camera::Camera (){
-    campos = Vect(0,0,0);
-    camdir = Vect(0,0,1);
-    camright = Vect(0,0,0);
-    camdown = Vect(0,0,0);
+    camPosition = Vect(0,0,0);
+    camDirection = Vect(0,0,1);
+    camRight = Vect(0,0,0);
+    camDown = Vect(0,0,0);
 }
 
 Camera::Camera (Vect pos, Vect dir, Vect right, Vect down){
-    campos = pos;
-    camdir = dir;
-    camright = right;
-    camdown = down;
+    camPosition = pos;
+    camDirection = dir;
+    camRight = right;
+    camDown = down;
 }
 
 #endif // CAMERA_H

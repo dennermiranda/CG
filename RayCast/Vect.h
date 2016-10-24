@@ -12,7 +12,6 @@ class Vect {
 
     Vect (double, double, double);
 
-    // method functions
     double getVectX() { return x; }
     double getVectY() { return y; }
     double getVectZ() { return z; }

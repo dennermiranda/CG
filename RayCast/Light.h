@@ -1,34 +1,33 @@
-#ifndef LIGHT_H
-#define LIGHT_H
+#ifndef _Light_H
+#define _Light_H
 
 #include "Vect.h"
 #include "Color.h"
 
-class Light {
+class Light : public Source {
+
     Vect position;
     Color color;
 
     public:
 
-    Light();
+    Light ();
 
-    Light(Vect, Color);
+    Light (Vect, Color);
 
-    //Get functions
-
-    Vect getLightPosition(){ return position; }
-    Color getLightColor(){ return color; }
+    virtual Vect getLightPosition () { return position; }
+    virtual Color getLightColor () { return color; }
 
 };
 
-Light::Light (){
-    position = Vect(0,0,0); //default position
-    color = Color(1,1,1,0); //default color = white
+Light::Light () {
+    position = Vect(0,0,0); //Default position
+    color = Color(1,1,1,0); //Default color (White)
 }
 
-Light::Light (Vect p, Color c){
-    position = p;
-    color = c;
+Light::Light (Vect p, Color c) {
+        position = p;
+        color = c;
 }
 
 #endif // LIGHT_H

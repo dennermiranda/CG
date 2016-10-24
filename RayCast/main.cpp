@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <cstring>
+#include <string>
 #include <vector>
 #include <cmath>
 #include <limits>
@@ -14,10 +14,12 @@
 #include "Ray.h"
 #include "Camera.h"
 #include "Color.h"
+#include "Source.h"
 #include "Light.h"
-#include "Sphere.h"
 #include "Object.h"
+#include "Sphere.h"
 #include "Plane.h"
+
 
 using namespace std;
 
@@ -104,176 +106,172 @@ void saveBMP(const std::string filename, int w, int h, int dpi, RGBType* data){
     std::fclose(file);
 }
 
+
 int winningObjectIndex(vector<double> object_intersections) {
 
     int index_of_minimum_value;
 
-    //Preventing the program from unnecessary calculations
+    //Preventing the program from unnecessary calculations:
 
-    if(object_intersections.size() == 0){ //so there's no intersections
-
+    if (object_intersections.size() == 0) { //There're no intersections
         return -1;
+    }
+    else if (object_intersections.size() == 1) {
 
-    }else if (object_intersections.size() == 1){
-
-        if (object_intersections.at(0) > 0){ //if that intersection is greater than zero then its our index of minimum value
-
+        if (object_intersections.at(0) > 0) { //If that intersection is greater than zero then its our index of minimum value
 
             return 0; //index[0] is the object index
 
-        }else{ //otherwise the only intersections value is negative
-
-            return -1; //the ray missed everything
-
+        }else{ //Otherwise the only intersection value is negative
+            return -1;
         }
 
-    }else{ //there is more than one intersections
+    }else{ //Otherwise there is more than one intersection - So first we need to find the maximum value
 
         double max = 0;
-
         for (int i = 0; i < object_intersections.size(); i++) {
-            if (max < object_intersections.at(i)){
-                max = object_intersections.at(i); //the pixels color will be the same as this obj
+            if (max < object_intersections.at(i)) {
+                max = object_intersections.at(i); //The pixel's color will be the same as this object
             }
         }
 
-        //Then starting from the maximum value find the minimum position
-        if (max > 0){//We only want positive intersections
+        //Then starting from the maximum value we gotta find the minimum position
+
+        if (max > 0) { //We only want positive intersections
 
             for (int index = 0; index < object_intersections.size(); index++) {
-                if (object_intersections.at(index) > 0 && object_intersections.at(index) <= max){
+
+                if (object_intersections.at(index) > 0 && object_intersections.at(index) <= max) {
                     max = object_intersections.at(index);
                     index_of_minimum_value = index;
+
                 }
             }
 
             return index_of_minimum_value;
 
-        }else{
-            //all the intersections were negative
+        }else { //All the intersections were negative
             return -1;
         }
-
     }
 }
 
-//Pixel position "thisone"
 int px;
 
-int main(int argc, char *argv[])
-{
-    cout << "Rendering..." << endl;
+int main (int argc, char *argv[]) {
+
+    cout << "Rendering ..." << endl;
 
     int dpi = 72;
     int width = 640;
     int height = 480;
 
     int n = width*height;
-    double aspectratio = (double)width/(double)height;
 
+    double aspectratio = (double)width/(double)height;
     RGBType *pixels = new RGBType[n];
+
 
     Vect O (0,0,0); //Origin vector
     Vect X (1,0,0);
     Vect Y (0,1,0); //ViewUp
     Vect Z (0,0,1);
 
-//    Vect campos (3, 1.5, 4);
-    Vect campos (3, 1.5, -4);
+    Vect CamPosition (3, 1.5, -4);
 
-    Vect look_at (0,0,0);
+    Vect look_at (0, 0, 0);
+    Vect diff_btw (CamPosition.getVectX() - look_at.getVectX(), CamPosition.getVectY() - look_at.getVectY(), CamPosition.getVectZ() - look_at.getVectZ());
 
-    Vect diff_btw (campos.getVectX() - look_at.getVectX(), campos.getVectY() - look_at.getVectY(), campos.getVectZ() - look_at.getVectZ()); // difference
+    Vect camDirection = diff_btw.negative().normalize(); //Cameras Direction normalized (k)
+    Vect camRight = Y.crossProduct(camDirection).normalize(); //Cameras Right normalized (i)
+    Vect camDown = camRight.crossProduct(camDirection); //Cameras down (j)
 
-    Vect camdir = diff_btw.negative().normalize(); //camera direction normalized //k?
-    Vect camright = Y.crossProduct(camdir).normalize(); //camera right normalized //i?
-    Vect camdown = camright.crossProduct(camdir); //j?
+    Camera scene_cam (CamPosition, camDirection, camRight, camDown);
 
-    Camera scene_cam(campos, camdir, camright, camdown);
-
-    //Creating our colors
+    //Creating our colors:
 
     Color white_light (1.0, 1.0, 1.0, 0);
     Color pretty_green (0.5, 1.0, 0.5, 0.3);
     Color maroon (0.5, 0.25, 0.25, 0);
+    Color tile_floor (1, 1, 1, 2);
     Color gray (0.5, 0.5, 0.5, 0);
     Color black (0.0, 0.0, 0.0, 0);
 
 
-    //Creating our light source
-
+    //Creating our light source:
     Vect light_position (-7,10,-10);
     Light scene_light (light_position, white_light);
 
-    //Creating scene objects
+    //Creating scene objects:
+    vector<Source*> light_sources;
+    light_sources.push_back(dynamic_cast<Source*>(&scene_light));
 
-    Sphere scene_sphere (O, 1, pretty_green); //(position, radius, color);
-    Plane scene_plane (Y,  -1, maroon); //(up and down direction of the scene, distance from the center of our plane to the center of the scene (right beneath the sphere), color)
+    //The scene's objects:
+    Sphere scene_sphere (O, 1, pretty_green); //(Position, Radius, Color);
+    Plane scene_plane (Y, -1, maroon); //(Up and down direction of the scene, Distance from the center of our plane to the center of the scene (right beneath the sphere), Color)
 
-    //We need to index our scene objects
+    //Storing scene's objects:
     vector<Object*> scene_objects;
     scene_objects.push_back(dynamic_cast<Object*>(&scene_sphere)); //Pushing the sphere into the vector
     scene_objects.push_back(dynamic_cast<Object*>(&scene_plane)); //Pushing the plane into the vector
 
     double xamnt, yamnt;
 
-    for (int x = 0; x< width; x++){
-        for (int y = 0; y< height; y++){
-            //return colour
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+
             px = y*width + x;
 
-            //start with no anti-aliasing
-            if (width > height) {
-                //the image is wider than it is tall
-                xamnt = ((x+0.5)/width)*aspectratio - (((width-height/(double)height/2)));
-                yamnt = ((height - y)+ 0.5)/height;
+            //Start with no anti-aliasing
 
-            }else if (height > width) {
-                //the image is taller than it is wide
-                xamnt = ((x+0.5)/width);
-                yamnt = (((height - y)+ 0.5)/height)/aspectratio - (((height - width)/(double)width)/2);
+            if (width > height) { // The image is wider than it is tall
 
-            }else {
-                //the image is square
+                xamnt = ((x+0.5)/width)*aspectratio - (((width-height)/(double)height)/2);
+                yamnt = ((height - y) + 0.5)/height;
+
+            }else if (height > width) { // The imager is taller than it is wide
+
+                xamnt = (x + 0.5)/ width;
+                yamnt = (((height - y) + 0.5)/height)/aspectratio - (((height - width)/(double)width)/2);
+
+            }else{ // The image is square
+
                 xamnt = (x + 0.5)/width;
-                yamnt = ((height - y) + 0.5/height);
+                yamnt = ((height - y) + 0.5)/height;
+
             }
 
-            //Creating rays
+            //Creating rays:
             Vect cam_ray_origin = scene_cam.getCameraPosition();
-            Vect cam_ray_direction = camdir.vectAdd(camright.vectMult(xamnt - 0.5).vectAdd(camdown.vectMult(yamnt-0.5))).normalize();
+            Vect cam_ray_direction = camDirection.vectAdd(camRight.vectMult(xamnt - 0.5).vectAdd(camDown.vectMult(yamnt - 0.5))).normalize();
 
             Ray cam_ray (cam_ray_origin, cam_ray_direction); //A specific camera ray is going through this specific xy pixel into the scene to look for intersections options
 
-            //Creating an "array" of intersections since now we've got rays going through
+            //Creating an "array" of intersections since now we've got rays going through:
             vector<double> intersections;
 
             //Checking if the ray which the loop is currently dealing with intersecs with any objects in the scene
-            for (int index = 0 ; index < scene_objects.size() ; index++){
+            for (int index = 0; index < scene_objects.size(); index++) {
+
                 intersections.push_back(scene_objects.at(index)->findIntersection(cam_ray));
+
             }
 
-            int index_of_winning_object = winningObjectIndex(intersections); //Checking which object is the closest to the camera
+            int index_of_winning_object = winningObjectIndex(intersections); //Getting the nearest object
 
-            //cout << index_of_winning_object;
+//            cout << index_of_winning_object; //Testing...
 
-//            if((x>200 && x<440) && (y>200 && y < 280)){
-//                pixels[px].r = 50;
-//                pixels[px].g = 10;
-//                pixels[px].b = 120;
-//            }
-//            else{
-//                pixels[px].r = 0;
-//                pixels[px].g = 0;
-//                pixels[px].b = 0;
-//            }
+            if (index_of_winning_object == -1) {
 
-            if (index_of_winning_object == -1) { //setting the background color to black
+                //Setting the backgroung color to black:
+
                 pixels[px].r = 0;
                 pixels[px].g = 0;
                 pixels[px].b = 0;
 
-            }else{ //setting the color of the obj
+            }else{
+
+                //Setting the object color:
 
                 Color this_color = scene_objects.at(index_of_winning_object)->getColor();
 
@@ -281,13 +279,12 @@ int main(int argc, char *argv[])
                 pixels[px].g = this_color.getColorGreen();
                 pixels[px].b = this_color.getColorBlue();
 
+                }
             }
-
-
         }
-    }
 
     saveBMP("scene.bmp", width, height, dpi, pixels);
 
     return 0;
+
 }

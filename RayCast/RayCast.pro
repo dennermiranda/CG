@@ -13,4 +13,5 @@ HEADERS += \
     Light.h \
     Sphere.h \
     Object.h \
-    Plane.h
+    Plane.h \
+    Source.h

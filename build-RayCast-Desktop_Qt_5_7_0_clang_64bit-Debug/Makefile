@@ -206,7 +206,8 @@ DIST          = ../../../Qt5.7.0/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		Light.h \
 		Sphere.h \
 		Object.h \
-		Plane.h ../RayCast/main.cpp
+		Plane.h \
+		Source.h ../RayCast/main.cpp
 QMAKE_TARGET  = RayCast
 DESTDIR       = 
 TARGET        = RayCast
@@ -568,9 +569,10 @@ main.o: ../RayCast/main.cpp ../RayCast/Vect.h \
 		../RayCast/Ray.h \
 		../RayCast/Camera.h \
 		../RayCast/Color.h \
+		../RayCast/Source.h \
 		../RayCast/Light.h \
-		../RayCast/Sphere.h \
 		../RayCast/Object.h \
+		../RayCast/Sphere.h \
 		../RayCast/Plane.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../RayCast/main.cpp
 
