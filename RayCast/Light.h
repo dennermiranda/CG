@@ -1,6 +1,7 @@
 #ifndef _Light_H
 #define _Light_H
 
+#include "Source.h"
 #include "Vect.h"
 #include "Color.h"
 

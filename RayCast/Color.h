@@ -20,6 +20,50 @@ class Color {
     double setColorBlue(double blueValue) { blue = blueValue; }
     double setColorSpecial(double specialValue) { special = specialValue; }
 
+    double brightness() {
+        return (red + green + blue)/3;
+    }
+
+    Color colorScalar(double scalar) { //Method function that scales our color vector by some factor
+        return Color (red*scalar, green*scalar, blue*scalar, special);
+    }
+
+    Color colorAdd(Color color) { //Adding two colors together
+        return Color (red + color.getColorRed(), green + color.getColorGreen(), blue + color.getColorBlue(), special);
+    }
+
+    Color colorMultiply(Color color) { //Multiplication of two colors
+        return Color (red*color.getColorRed(), green*color.getColorGreen(), blue*color.getColorBlue(), special);
+    }
+
+    Color colorAverage (Color color) {
+        return Color ((red + color.getColorRed())/2, (green + color.getColorGreen())/2, (blue + color.getColorBlue())/2, special);
+    }
+
+    Color clip() {
+
+        double allLight = red + blue + green ;
+        double excessLight = allLight - 3;
+
+        if (excessLight > 0) {
+
+            red = red + excessLight*(red/allLight);
+            green = green + excessLight*(green/allLight);
+            blue = blue + excessLight*(blue/allLight);
+
+        }
+
+        if (red > 1) {red = 1;}
+        if (green > 1) {green = 1;}
+        if (blue > 1) {blue = 1;}
+
+        if (red < 0) {red = 0;}
+        if (green < 0) {green = 0;}
+        if (blue < 0) {blue = 0;}
+
+        return Color (red, green, blue, special);
+
+    }
 };
 
 Color::Color () { //Setting the default color:

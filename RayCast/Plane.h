@@ -20,8 +20,6 @@ class Plane : public Object {
 
     Plane (Vect, double, Color);
 
-    // method functions
-
     Vect getPlaneNormal () { return normal; }
 
     double getPlaneDistance () { return distance; }
@@ -29,8 +27,6 @@ class Plane : public Object {
     virtual Color getColor () { return color; }
 
     //Calculating the reflexions:
-
-
     virtual Vect getNormalAt(Vect point) {
         return normal;
     }
