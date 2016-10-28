@@ -156,6 +156,74 @@ int closestObjectIndex(vector<double> object_intersections) {
 	}
 }
 
+Color getColorAt(Vector intersectionPoint, Vector camera_ray_direction, long index_of_closest_object) {
+    //Modelo de iluminação de Phong
+
+    Primitive *closest_object = objects.at(index_of_closest_object);
+    Vector n = closest_object->getNormalAt(intersectionPoint);
+    Material object_material = closest_object->getMaterial();
+
+    Color color(0, 0, 0);
+    //color = color.scale(ambientLight);
+    for (unsigned int light_i = 0; light_i < light_sources.size(); light_i++) {
+        Color light_color_a = light_sources.at(light_i)->col_a();
+        Color light_color_d = light_sources.at(light_i)->col_d();
+        Color light_color_s = light_sources.at(light_i)->col_s();
+        Vector l = light_sources.at(light_i)->pos().add(intersectionPoint.negative()).normalize();
+        float cossine = n.dotProduct(l);
+
+        // Componente ambiente
+        color = color.add(light_color_a.multiply(object_material.ka()));
+
+        if (cossine > 0) {
+            // testar as sombras
+            bool shadowed = false;
+
+            if (render_shadows) {
+
+                Vector distance_to_light = light_sources.at(light_i)->pos().add(intersectionPoint.negative());
+                float dtl_mag = distance_to_light.magnitude();
+
+                Ray shadow_ray(intersectionPoint, distance_to_light.normalize());
+
+                vector<double> intersections;
+
+                for (unsigned int i = 0; i < objects.size(); i++) {
+                    intersections.push_back(objects.at(i)->findIntersection(shadow_ray));
+                }
+
+                for (unsigned int c = 0; c < intersections.size(); c++) {
+                    if (intersections.at(c) > accuracy) {
+                        if(intersections.at(c) <= dtl_mag) {
+                            shadowed = true;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (shadowed == false) {
+                // Componente Difusa
+                color = color.add(light_color_d.multiply(object_material.kd()).scale(cossine));
+
+                //Componente especular
+                Vector v = camera_ray_direction.negative();
+                double _2ln = 2*l.dotProduct(n);
+                Vector _2lnn = n.multiply(_2ln);
+                Vector r = _2lnn.add(l.negative()).normalize();
+
+                double specular = r.dotProduct(v);
+
+                //if (specular > 0) {
+                    color = color.add(light_color_s.multiply(object_material.ks()).scale(pow(specular, object_material.m())));
+                //}
+            }
+        }
+    }
+
+    return color.clip();
+}
+
 int px;
 
 int main (int argc, char *argv[]) {
