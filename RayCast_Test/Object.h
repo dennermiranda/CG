@@ -1,27 +1,33 @@
-#ifndef _OBJECT_H
-#define _OBJECT_H
+#ifndef OBJECT_H
+#define OBJECT_H
 
+#include <cmath>
+#include <vector>
+#include "material.h"
 #include "Ray.h"
-#include "Vect.h"
-#include "Color.h"
+#include "primitive.h"
 
-class Object {	
-	public:
-	
-	Object ();
+using namespace std;
 
-	virtual Color getColor () { return Color (0.0, 0.0, 0.0, 0); }
-	
-    virtual Vect getNormalAt(Vect intersection_position) {
-        return Vect (0, 0, 0);
-    }
-	
-    virtual double findIntersection(Ray ray) { //To return the intersection that ray makes with object
-		return 0;
-	}
-	
+class Object {
+
+    protected:
+        Material material;
+        vector<Primitive*> faces;
+        double bottomY;
+
+    public:
+        Object();
+
+        vector<Primitive *> getFaces();
+        double getBottomY();
+        Material getMaterial();
+
+        void translate(double tx, double ty, double tz);
+        void scale(double sx, double sy, double sz);
+        void rotateX(double angle);
+        void rotateY(double angle);
+        void rotateZ(double angle);
 };
-
-Object::Object () {}
 
 #endif // OBJECT_H

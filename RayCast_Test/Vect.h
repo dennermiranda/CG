@@ -1,6 +1,7 @@
 #ifndef _VECT_H
 #define _VECT_H
 
+#include <cmath>
 #include "math.h"
 
 class Vect {
@@ -44,6 +45,42 @@ class Vect {
 	Vect vectMult (double scalar) {
 		return Vect (x*scalar, y*scalar, z*scalar);
 	}
+
+    void translate (double tx, double ty, double tz){
+        x += tx;
+        y += ty;
+        z += tz;
+    }
+
+    void scale (double sx, double sy, double sz){
+        x *= sx;
+        y *= sy;
+        z *= sz;
+    }
+
+    void rotateX(double angle){
+        double newY = y*cos(angle) - z*sin(angle);
+        double newZ = y*sin(angle) + z*cos(angle);
+
+        y = newY;
+        z = newZ;
+    }
+
+    void rotateY(double angle){
+        double newX = x*cos(angle) + z*sin(angle);
+        double newZ = (-x)*sin(angle) + z*cos(angle);
+
+        x = newX;
+        z = newZ;
+    }
+
+    void rotateZ(double angle){
+        double newX = x*cos(angle) - y*sin(angle);
+        double newY = x*sin(angle) + y*cos(angle);
+
+        x = newX;
+        y = newY;
+    }
 };
 
 Vect::Vect () {

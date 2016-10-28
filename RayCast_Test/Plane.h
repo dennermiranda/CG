@@ -2,35 +2,54 @@
 #define _Plane_H
 
 #include "math.h"
-#include "Object.h"
+#include "primitive.h"
 #include "Vect.h"
-#include "Color.h"
+#include "material.h"
 
-class Plane : public Object {
+class Plane : public Primitive {
 
     Vect normal; //Normal vector perpendicular to the surface
 
     double distance; //Distance from the center of the plane from the center of the scene (Distance from the origin)
 
-	Color color;
+    //Material color;
 	
 	public:
 	
 	Plane ();
 	
-	Plane (Vect, double, Color);
+    Plane (Vect, double, Material);
 	
 	// method functions
 	Vect getPlaneNormal () { return normal; }
 	double getPlaneDistance () { return distance; }
-	virtual Color getColor () { return color; }
+    virtual Material getColor () { return color; }
 	
     //Calculating the reflexions:
 
 	virtual Vect getNormalAt(Vect point) {
 		return normal;
 	}
-	
+
+    void translate (double tx, double ty, double tz){
+
+    }
+    void scale (double sx, double sy, double sz){
+
+    }
+
+    void rotateX(double angle) {
+
+    }
+
+    void rotateY(double angle) {
+
+    }
+
+    void rotateZ(double angle) {
+
+    }
+
 	virtual double findIntersection(Ray ray) {
 
         Vect ray_direction = ray.getRayDirection();
@@ -50,19 +69,22 @@ class Plane : public Object {
 
         }
 	}
+
+
 	
 };
 
 Plane::Plane () {
     normal = Vect(1,0,0); //Default orientation - x is up
 	distance = 0;
-    color = Color(0.5,0.5,0.5, 0); //Gray
+    material = Material();
 }
 
-Plane::Plane (Vect normalValue, double distanceValue, Color colorValue) {
+Plane::Plane (Vect normalValue, double distanceValue, Material colorValue) {
 	normal = normalValue;
 	distance = distanceValue;
-	color = colorValue;
+    //color = colorValue;
+    this->material = colorValue;
 }
 
 #endif

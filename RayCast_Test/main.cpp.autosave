@@ -288,7 +288,7 @@ int main (int argc, char *argv[]) {
                 //Setting the object color:
                 Vect intersecting_ray_direction = cam_ray_direction;
 
-
+                
 
 
                 //Color this_color = scene_objects.at(index_of_closest_object)->getColor();
