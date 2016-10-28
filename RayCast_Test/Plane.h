@@ -23,7 +23,7 @@ class Plane : public Primitive {
 	// method functions
 	Vect getPlaneNormal () { return normal; }
 	double getPlaneDistance () { return distance; }
-    virtual Material getColor () { return color; }
+    //virtual Material getColor () { return color; }
 	
     //Calculating the reflexions:
 

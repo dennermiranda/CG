@@ -25,19 +25,19 @@ class Color {
         return(red + green + blue)/3;
     }
 
-    Color colorScalar(double scalar) {
-        return Color (red*scalar, green*scalar, blue*scalar, special);
+    Color scalar(double scalar) {
+        return Color (red*scalar, green*scalar, blue*scalar);
     }
 
-    Color colorAdd(Color color) {
+    Color add(Color color) {
         return Color (red + color.getColorRed(), green + color.getColorGreen(), blue + color.getColorBlue());
     }
 
-    Color colorMultiply(Color color) {
+    Color multiply(Color color) {
         return Color (red*color.getColorRed(), green*color.getColorGreen(), blue*color.getColorBlue());
     }
 
-    Color colorAverage(Color color) {
+    Color average(Color color) {
         return Color ((red + color.getColorRed())/2, (green + color.getColorGreen())/2, (blue + color.getColorBlue())/2);
     }
 
@@ -58,6 +58,8 @@ class Color {
 
         return Color (red, green, blue);
     }
+
+
 };
 
 Color::Color () {

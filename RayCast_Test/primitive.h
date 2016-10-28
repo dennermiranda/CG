@@ -12,7 +12,7 @@ class Primitive {
 
         Material getMaterial() { return material; }
         virtual double findIntersection(Ray ray) = 0;
-        virtual Vector getNormalAt(Vector p) = 0;
+        virtual Vect getNormalAt(Vect p) = 0;
 
         virtual void translate(double tx, double ty, double tz) = 0;
         virtual void scale(double sx, double sy, double sz) = 0;

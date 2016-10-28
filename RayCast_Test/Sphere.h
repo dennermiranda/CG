@@ -15,11 +15,11 @@ public:
     Sphere();
     Sphere(Vect, double, Material);
 
-    Vector getCenter() { return center; }
+    Vect getCenter() { return center; }
     double rad() { return radius; }
     virtual Material getColor() { return color; }
 
-    virtual Vect getNormalAt(Vector p);
+    virtual Vect getNormalAt(Vect p);
     virtual double findIntersection(Ray ray);
 
     virtual void translate(double tx, double ty, double tz);

@@ -21,6 +21,15 @@
 #include "Plane.h"
 
 
+int px;
+
+vector<Primitive *> objects;
+vector<Light *> light_sources;
+const bool render_shadows = true;
+
+double ambientLight = 0.2;
+double accuracy = 0.0000000001;
+
 using namespace std;
 
 struct RGBType {
@@ -156,20 +165,20 @@ int closestObjectIndex(vector<double> object_intersections) {
 	}
 }
 
-Color getColorAt(Vector intersectionPoint, Vector camera_ray_direction, long index_of_closest_object) {
+Color getColorAt(Vect intersectionPoint, Vect camera_ray_direction, long index_of_closest_object) {
     //Modelo de iluminação de Phong
 
     Primitive *closest_object = objects.at(index_of_closest_object);
-    Vector n = closest_object->getNormalAt(intersectionPoint);
+    Vect n = closest_object->getNormalAt(intersectionPoint);
     Material object_material = closest_object->getMaterial();
 
     Color color(0, 0, 0);
     //color = color.scale(ambientLight);
     for (unsigned int light_i = 0; light_i < light_sources.size(); light_i++) {
-        Color light_color_a = light_sources.at(light_i)->col_a();
-        Color light_color_d = light_sources.at(light_i)->col_d();
-        Color light_color_s = light_sources.at(light_i)->col_s();
-        Vector l = light_sources.at(light_i)->pos().add(intersectionPoint.negative()).normalize();
+        Color light_color_a = light_sources.at(light_i)->getAmbientColor();
+        Color light_color_d = light_sources.at(light_i)->getDifuseColor();
+        Color light_color_s = light_sources.at(light_i)->getSpecularColor();
+        Vect l = light_sources.at(light_i)->getLightPosition().vectAdd(intersectionPoint.negative()).normalize();
         float cossine = n.dotProduct(l);
 
         // Componente ambiente
@@ -181,7 +190,7 @@ Color getColorAt(Vector intersectionPoint, Vector camera_ray_direction, long ind
 
             if (render_shadows) {
 
-                Vector distance_to_light = light_sources.at(light_i)->pos().add(intersectionPoint.negative());
+                Vect distance_to_light = light_sources.at(light_i)->getLightPosition().vectAdd(intersectionPoint.negative());
                 float dtl_mag = distance_to_light.magnitude();
 
                 Ray shadow_ray(intersectionPoint, distance_to_light.normalize());
@@ -204,18 +213,18 @@ Color getColorAt(Vector intersectionPoint, Vector camera_ray_direction, long ind
 
             if (shadowed == false) {
                 // Componente Difusa
-                color = color.add(light_color_d.multiply(object_material.kd()).scale(cossine));
+                color = color.add(light_color_d.multiply(object_material.kd()).scalar(cossine));
 
                 //Componente especular
-                Vector v = camera_ray_direction.negative();
+                Vect v = camera_ray_direction.negative();
                 double _2ln = 2*l.dotProduct(n);
-                Vector _2lnn = n.multiply(_2ln);
-                Vector r = _2lnn.add(l.negative()).normalize();
+                Vect _2lnn = n.vectMult(_2ln);
+                Vect r = _2lnn.vectAdd(l.negative()).normalize();
 
                 double specular = r.dotProduct(v);
 
                 //if (specular > 0) {
-                    color = color.add(light_color_s.multiply(object_material.ks()).scale(pow(specular, object_material.m())));
+                    color = color.add(light_color_s.multiply(object_material.ks()).scalar(pow(specular, object_material.m())));
                 //}
             }
         }
@@ -224,7 +233,9 @@ Color getColorAt(Vector intersectionPoint, Vector camera_ray_direction, long ind
     return color.clip();
 }
 
-int px;
+
+
+
 
 int main (int argc, char *argv[]) {
 
@@ -258,12 +269,12 @@ int main (int argc, char *argv[]) {
 	
     //Creating our colors:
 
-	Color white_light (1.0, 1.0, 1.0, 0);
-	Color pretty_green (0.5, 1.0, 0.5, 0.3);
-	Color maroon (0.5, 0.25, 0.25, 0);
-	Color tile_floor (1, 1, 1, 2);
-	Color gray (0.5, 0.5, 0.5, 0);
-	Color black (0.0, 0.0, 0.0, 0);
+    Color white_light (1.0, 1.0, 1.0);
+    Color pretty_green (0.5, 1.0, 0.5);
+    Color maroon (0.5, 0.25, 0.25);
+    Color tile_floor (1, 1, 1);
+    Color gray (0.5, 0.5, 0.5);
+    Color black (0.0, 0.0, 0.0);
 	
 
     //Colored materials:
@@ -279,15 +290,15 @@ int main (int argc, char *argv[]) {
 
     //Creating our light source:
     Vect light_position (-7,10,-10);
-	Light scene_light (light_position, white_light);
+    Light scene_light (light_position, white_light, white_light, white_light);
 
     //Creating scene objects:
 	vector<Source*> light_sources;
 	light_sources.push_back(dynamic_cast<Source*>(&scene_light));
 	
     //The scene's objects:
-    Sphere scene_sphere (O, 1, pretty_green); //(Position, Radius, Color);
-    Plane scene_plane (Y, -1, maroon); //(Up and down direction of the scene, Distance from the center of our plane to the center of the scene (right beneath the sphere), Color)
+    Sphere scene_sphere (O, 1, green); //(Position, Radius, Color);
+    Plane scene_plane (Y, -1, brown); //(Up and down direction of the scene, Distance from the center of our plane to the center of the scene (right beneath the sphere), Color)
 
     //Storing scene's objects:
     vector<Object*> scene_objects;
@@ -332,7 +343,7 @@ int main (int argc, char *argv[]) {
             //Checking if the ray which the loop is currently dealing with intersecs with any objects in the scene
             for (int index = 0; index < scene_objects.size(); index++) {
 
-                intersections.push_back(scene_objects.at(index)->findIntersection(cam_ray));
+                intersections.push_back(objects.at(index)->findIntersection(cam_ray));
 
             }
 					
@@ -351,7 +362,7 @@ int main (int argc, char *argv[]) {
             }else{
 
                 // oc+d*t
-                Vect intersection_position = cam_ray_origin.vectAdd(cam_ray_direction.vectMult(intersections.at(index_of_winning_object)));
+                Vect intersection_position = cam_ray_origin.vectAdd(cam_ray_direction.vectMult(intersections.at(index_of_closest_object)));
 
                 //Setting the object color:
                 Vect intersecting_ray_direction = cam_ray_direction;

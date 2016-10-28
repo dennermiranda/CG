@@ -25,9 +25,9 @@ class Light : public Source {
 
 Light::Light () {
     position = Vect(0,0,0); //Default position
-    color_a = Color(1,1,1,0); //Default color (White)
-    color_d = Color(1,1,1,0); //Default color (White)
-    color_s = Color(1,1,1,0); //Default color (White)
+    color_a = Color(1,1,1); //Default color (White)
+    color_d = Color(1,1,1); //Default color (White)
+    color_s = Color(1,1,1); //Default color (White)
 }
 
 Light::Light (Vect p, Color a, Color d, Color s) {
