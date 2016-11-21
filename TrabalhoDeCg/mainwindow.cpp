@@ -146,12 +146,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Wind wind(metal);
     wind.scale(0.03,0.03,0.03);
-    wind.rotateY((45.0*3.14)/180.0);
+    wind.rotateX(270);
     addObject(wind);
 
     Mesa mesa(metal);
     //addObject(mesa);
-//    mesa.rotateZ((45.0*3.14)/180.0);
+    //mesa.rotateY(45);
 
     double aspectRatio = (double)W / (double)H;
 
@@ -205,6 +205,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
             QRgb qtRGB = qRgb(c.r()*255, c.g()*255, c.b()*255);
             image.setPixel(i, j, qtRGB);
+            cout << i << " pixel " << j << endl;
          }
     }
 

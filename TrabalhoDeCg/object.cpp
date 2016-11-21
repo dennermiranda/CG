@@ -28,18 +28,21 @@ void Object::scale(double sx, double sy, double sz) {
 }
 
 void Object::rotateX(double angle) {
+    angle = (angle*3.14)/180.0;
     for(unsigned int i = 0; i < faces.size(); i++) {
         faces.at(i)->rotateX(angle);
     }
 }
 
 void Object::rotateY(double angle) {
+    angle = (angle*3.14)/180.0;
     for(unsigned int i = 0; i < faces.size(); i++) {
         faces.at(i)->rotateY(angle);
     }
 }
 
 void Object::rotateZ(double angle) {
+    angle = (angle*3.14)/180.0;
     for(unsigned int i = 0; i < faces.size(); i++) {
         faces.at(i)->rotateZ(angle);
     }
