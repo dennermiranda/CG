@@ -7,8 +7,6 @@
 #include "color.h"
 
 class Triangle : public Primitive {
-    Vector _a, _b, _c, _n;
-
 public:
     Triangle();
     Triangle(Vector, Vector, Vector, Material);
@@ -25,5 +23,7 @@ public:
     virtual void rotateX(double angle);
     virtual void rotateY(double angle);
     virtual void rotateZ(double angle);
+
+    Vector _a, _b, _c, _n;
 };
 #endif // TRIANGLE_H

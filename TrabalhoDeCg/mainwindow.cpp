@@ -144,14 +144,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Windmll
 
-    //Wind wind(metal);
-    //wind.scale(0.03,0.03,0.03);
-    //wind.rotateY(90);
-    //addObject(wind);
+    Wind wind(metal);
+    wind.scale(0.03,0.03,0.03);
+    wind.rotateY((45.0*3.14)/180.0);
+    addObject(wind);
 
     Mesa mesa(metal);
-    addObject(mesa);
-    mesa.rotateY(45);
+    //addObject(mesa);
+//    mesa.rotateZ((45.0*3.14)/180.0);
 
     double aspectRatio = (double)W / (double)H;
 

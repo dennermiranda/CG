@@ -7,7 +7,6 @@
 using namespace std;
 
 class Vector {
-    double _x, _y, _z;
 public:
     Vector();
     Vector(double, double, double);
@@ -29,6 +28,8 @@ public:
     void rotateX(double angle);
     void rotateY(double angle);
     void rotateZ(double angle);
+
+    double _x, _y, _z;
 };
 
 //Usar para debugar

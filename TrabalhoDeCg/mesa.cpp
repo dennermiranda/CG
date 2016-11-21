@@ -6,7 +6,7 @@ Mesa::Mesa(Material color)
     //Tampo
     Cubo tampo(color);
     //tampo.scale(1.1, 0.15, 0.6);
-    tampo.scale(2.2, 0.15, 1.2);
+    //tampo.scale(2.2, 0.15, 1.2);
 
 
     //Perna1
@@ -35,7 +35,7 @@ Mesa::Mesa(Material color)
     for(unsigned int i = 0; i < tampo.getFaces().size(); i++) {
         faces.push_back(tampo.getFaces().at(i));
     }
-    for(unsigned int i = 0; i < perna1.getFaces().size(); i++) {
+    /*for(unsigned int i = 0; i < perna1.getFaces().size(); i++) {
         faces.push_back(perna1.getFaces().at(i));
     }
     for(unsigned int i = 0; i < perna2.getFaces().size(); i++) {
@@ -46,6 +46,6 @@ Mesa::Mesa(Material color)
     }
     for(unsigned int i = 0; i < perna4.getFaces().size(); i++) {
         faces.push_back(perna4.getFaces().at(i));
-    }
+    }*/
 
 }

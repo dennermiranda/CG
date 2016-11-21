@@ -22,10 +22,16 @@ Triangle::Triangle(Vector a, Vector b, Vector c, Material material, Vector norma
 }
 
 Vector Triangle::getNormalAt(Vector p) {
+    Vector ca(_c.x() - _a.x(), _c.y() - _a.y(), _c.z() - _a.z());
+    Vector ba(_b.x() - _a.x(), _b.y() - _a.y(), _b.z() - _a.z());
+    _n = ca.crossProduct(ba).normalize();
     return _n;
 }
 
 Vector Triangle::getNormal() {
+    Vector ca(_c.x() - _a.x(), _c.y() - _a.y(), _c.z() - _a.z());
+    Vector ba(_b.x() - _a.x(), _b.y() - _a.y(), _b.z() - _a.z());
+    _n = ca.crossProduct(ba).normalize();
     return _n;
 }
 
