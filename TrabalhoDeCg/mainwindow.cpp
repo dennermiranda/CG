@@ -207,7 +207,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
             QRgb qtRGB = qRgb(c.r()*255, c.g()*255, c.b()*255);
             image.setPixel(i, j, qtRGB);
-            //cout << i << " pixel " << j << endl;
+//            cout << i << " pixel " << j << endl;
          }
     }
 
