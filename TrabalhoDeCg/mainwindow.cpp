@@ -151,7 +151,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     Mesa mesa(metal);
     addObject(mesa);
-    mesa.rotateY(90);
+    mesa.rotateY(60);
 
     double aspectRatio = (double)W / (double)H;
 
