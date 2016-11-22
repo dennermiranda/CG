@@ -14,7 +14,7 @@ Wind::Wind() {
 Wind::Wind(Material m) {
     ObjReader reader;
 
-    reader.read("Windmill.obj", m);
+    reader.read("/Users/Pedro/Desktop/CG/TrabalhoDeCg/Windmill.obj", m);
 
     faces = reader.getFaces();
     bottomY = reader.getBottomY();

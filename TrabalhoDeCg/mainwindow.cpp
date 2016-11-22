@@ -32,8 +32,8 @@ vector<Light *> light_sources;
 
 double accuracy = 0.0000000001;
 
-int W = 320*3;
-int H = 240*3;
+int W = 320*2;
+int H = 240*2;
 
 Color white(1.0, 1.0, 1.0);
 Color black(0, 0, 0);
@@ -144,14 +144,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Windmll
 
-//    Wind wind(metal);
-//    wind.scale(0.03,0.03,0.03);
-//    wind.rotateX(270);
-//    addObject(wind);
+    Wind wind(metal);
+    wind.scale(0.03,0.03,0.03);
+    wind.rotateX(270);
+    addObject(wind);
 
     Mesa mesa(metal);
-    addObject(mesa);
-    mesa.rotateY(60);
+//    addObject(mesa);
+//    mesa.rotateY(60);
 
     double aspectRatio = (double)W / (double)H;
 
