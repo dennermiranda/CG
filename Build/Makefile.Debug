@@ -13,11 +13,11 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DUNICODE -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -g -Wall -Wextra $(DEFINES)
-CXXFLAGS      = -pipe -fno-keep-inline-dllexport -g -std=gnu++11 -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
+CXXFLAGS      = -pipe -fno-keep-inline-dllexport -fopenmp -g -std=gnu++11 -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
 INCPATH       = -I..\TrabalhoDeCg -I. -ID:\qt\5.7\mingw53_32\include -ID:\qt\5.7\mingw53_32\include\QtWidgets -ID:\qt\5.7\mingw53_32\include\QtGui -ID:\qt\5.7\mingw53_32\include\QtANGLE -ID:\qt\5.7\mingw53_32\include\QtCore -Idebug -I. -ID:\qt\5.7\mingw53_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LD:\qt\5.7\mingw53_32\lib D:\qt\5.7\mingw53_32\lib\libqtmaind.a -LC:\utils\postgresql\pgsql\lib -LC:\utils\my_sql\my_sql\lib -lshell32 D:\qt\5.7\mingw53_32\lib\libQt5Widgetsd.a D:\qt\5.7\mingw53_32\lib\libQt5Guid.a D:\qt\5.7\mingw53_32\lib\libQt5Cored.a 
+LIBS        =        -lmingw32 -LD:\qt\5.7\mingw53_32\lib D:\qt\5.7\mingw53_32\lib\libqtmaind.a -LC:\utils\postgresql\pgsql\lib -LC:\utils\my_sql\my_sql\lib -lshell32 -fopenmp D:\qt\5.7\mingw53_32\lib\libQt5Widgetsd.a D:\qt\5.7\mingw53_32\lib\libQt5Guid.a D:\qt\5.7\mingw53_32\lib\libQt5Cored.a 
 QMAKE         = D:\qt\5.7\mingw53_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -496,6 +496,44 @@ debug/mainwindow.o: ../TrabalhoDeCg/mainwindow.cpp ../TrabalhoDeCg/mainwindow.h 
 		D:/qt/5.7/mingw53_32/include/QtWidgets/qtabwidget.h \
 		D:/qt/5.7/mingw53_32/include/QtGui/qicon.h \
 		ui_mainwindow.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/QVariant \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QAction \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qaction.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qactiongroup.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QApplication \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qapplication.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qeventloop.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qguiapplication.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qinputmethod.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QButtonGroup \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qpainter.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qpen.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QHeaderView \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qheaderview.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qstyleoption.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qvalidator.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qregularexpression.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qslider.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractslider.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qstyle.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qtabbar.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qrubberband.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QWidget \
 		../TrabalhoDeCg/primitive.h \
 		../TrabalhoDeCg/material.h \
 		../TrabalhoDeCg/color.h \

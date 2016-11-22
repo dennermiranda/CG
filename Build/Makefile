@@ -182,6 +182,7 @@ Makefile: ../TrabalhoDeCg/Trabalho.pro D:/qt/5.7/mingw53_32/mkspecs/win32-g++/qm
 		D:/qt/5.7/mingw53_32/mkspecs/features/win32/qt_config.prf \
 		D:/qt/5.7/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		D:/qt/5.7/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/qt/5.7/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		D:/qt/5.7/mingw53_32/mkspecs/features/default_pre.prf \
 		D:/qt/5.7/mingw53_32/mkspecs/features/win32/default_pre.prf \
@@ -332,6 +333,7 @@ D:/qt/5.7/mingw53_32/mkspecs/features/qt_config.prf:
 D:/qt/5.7/mingw53_32/mkspecs/features/win32/qt_config.prf:
 D:/qt/5.7/mingw53_32/mkspecs/win32-g++/qmake.conf:
 D:/qt/5.7/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/qt/5.7/mingw53_32/mkspecs/features/exclusive_builds.prf:
 D:/qt/5.7/mingw53_32/mkspecs/features/default_pre.prf:
 D:/qt/5.7/mingw53_32/mkspecs/features/win32/default_pre.prf:

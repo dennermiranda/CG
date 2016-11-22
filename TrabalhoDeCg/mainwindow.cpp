@@ -32,8 +32,8 @@ vector<Light *> light_sources;
 
 double accuracy = 0.0000000001;
 
-int W = 320*2;
-int H = 240*2;
+int W = 320*3;
+int H = 240*3;
 
 Color white(1.0, 1.0, 1.0);
 Color black(0, 0, 0);
@@ -144,14 +144,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Windmll
 
-    Wind wind(metal);
-    wind.scale(0.03,0.03,0.03);
-    wind.rotateX(270);
-    addObject(wind);
+//    Wind wind(metal);
+//    wind.scale(0.03,0.03,0.03);
+//    wind.rotateX(270);
+//    addObject(wind);
 
     Mesa mesa(metal);
-    //addObject(mesa);
-    //mesa.rotateY(45);
+    addObject(mesa);
+    mesa.rotateY(90);
 
     double aspectRatio = (double)W / (double)H;
 
@@ -173,6 +173,8 @@ MainWindow::MainWindow(QWidget *parent) :
     double xamnt, yamnt;
 
     for (int j = 0; j < H; j++) {
+        //Uma thread paraca da linha da matriz de pixels
+        #pragma omp parallel for
         for (int i = 0; i < W; i++) {
 
             if (W > H) {
@@ -205,7 +207,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
             QRgb qtRGB = qRgb(c.r()*255, c.g()*255, c.b()*255);
             image.setPixel(i, j, qtRGB);
-            cout << i << " pixel " << j << endl;
+            //cout << i << " pixel " << j << endl;
          }
     }
 
