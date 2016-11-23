@@ -153,10 +153,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Hexagono
 
-    Hex hexagono(metal);
-    hexagono.scale(0.03,0.03,0.03);
-//    hexagono.rotateX(270);
+    Hex hexagono(green);
+    hexagono.scale(0.015,0.015,0.015);
+//    hexagono.rotateX(90);
+//    hexagono.translate(0,0.47,0); //quando hex esta deitado
+    hexagono.rotateY(150);
+    hexagono.translate(0,0.9,0.5);
     addObject(hexagono);
+
+    //Hexagono 2
+
+    Hex hexagono_2(brass);
+    hexagono_2.scale(0.015,0.015,0.015);
+//    hexagono_2.rotateX(90);
+//    hexagono_2.translate(0,0.47,0); //quando hex esta deitado
+    hexagono_2.rotateY(120);
+    hexagono_2.translate(0,0.9,-0.5);
+    addObject(hexagono_2);
 
     Mesa mesa(metal);
     addObject(mesa);
@@ -164,6 +177,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     double aspectRatio = (double)W / (double)H;
 
+//    Vector camera_position(-6, 0.3, 3);
     Vector camera_position(-6, 4, 3); //Camera do Torus
     Vector look_at(0, 0, 0);
     Vector up(0, 1, 0);
