@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     material.cpp \
     cubo.cpp \
     wind.cpp \
-    mesa.cpp
+    mesa.cpp \
+    hex.cpp
 
 HEADERS  += mainwindow.h \
     vector.h \
@@ -48,6 +49,7 @@ HEADERS  += mainwindow.h \
     material.h \
     cubo.h \
     wind.h \
-    mesa.h
+    mesa.h \
+    hex.h
 
 FORMS    += mainwindow.ui

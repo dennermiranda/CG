@@ -24,6 +24,8 @@
 #include "cubo.h"
 #include "wind.h"
 #include "mesa.h"
+#include "hex.h"
+
 using namespace std;
 
 /* Globals */
@@ -32,8 +34,8 @@ vector<Light *> light_sources;
 
 double accuracy = 0.0000000001;
 
-int W = 320*3;
-int H = 240*3;
+int W = 320*2;
+int H = 240*2;
 
 Color white(1.0, 1.0, 1.0);
 Color black(0, 0, 0);
@@ -137,8 +139,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Torus
 
-    //Torus torus(metal);
-    //addObject(torus);
+//    Torus torus(metal);
+//    addObject(torus);
     Plane ground(Vector(0,1,0), -3, brown);
     addPrimitive(&ground);
 
@@ -148,6 +150,13 @@ MainWindow::MainWindow(QWidget *parent) :
 //    wind.scale(0.03,0.03,0.03);
 //    wind.rotateX(270);
 //    addObject(wind);
+
+    //Hexagono
+
+    Hex hexagono(metal);
+    hexagono.scale(0.03,0.03,0.03);
+//    hexagono.rotateX(270);
+    addObject(hexagono);
 
     Mesa mesa(metal);
     addObject(mesa);

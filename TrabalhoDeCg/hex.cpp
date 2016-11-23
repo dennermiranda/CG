@@ -1,24 +1,22 @@
-#include "wind.h"
+#include "hex.h"
 #include "objreader.h"
 
-Wind::Wind() {
+Hex::Hex() {
     ObjReader reader;
     // For any object
     material = Material();
-//    reader.read("/Users/Pedro/Desktop/CG/TrabalhoDeCg/Windmill.obj", material);
     reader.read("/Users/Pedro/Desktop/CG/TrabalhoDeCg/hex.obj", material);
-//    reader.read("Windmill.obj", material); //Dener
+//    reader.read("hex.obj", material); //Dener
 
     faces = reader.getFaces();
     bottomY = reader.getBottomY();
 }
 
-Wind::Wind(Material m) {
+Hex::Hex(Material m) {
     ObjReader reader;
 
-//    reader.read("/Users/Pedro/Desktop/CG/TrabalhoDeCg/Windmill.obj", m);
     reader.read("/Users/Pedro/Desktop/CG/TrabalhoDeCg/hex.obj", m);
-//    reader.read("Windmill.obj", m);//Dener
+//    reader.read("hex.obj", m);//Dener
 
     faces = reader.getFaces();
     bottomY = reader.getBottomY();
