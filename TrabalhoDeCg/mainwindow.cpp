@@ -34,8 +34,8 @@ vector<Light *> light_sources;
 
 double accuracy = 0.0000000001;
 
-int W = 320*2;
-int H = 240*2;
+int W = 320*3;
+int H = 240*3;
 
 Color white(1.0, 1.0, 1.0);
 Color black(0, 0, 0);
@@ -139,7 +139,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Torus
 
-//    Torus torus(metal);
+    Torus torus(red);
+//    torus.scale(0.5,0.5,0.5);
+//    torus.translate(0.75,1,0);
 //    addObject(torus);
     Plane ground(Vector(0,1,0), -3, brown);
     addPrimitive(&ground);
