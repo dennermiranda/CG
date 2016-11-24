@@ -160,7 +160,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    hexagono.rotateX(90);
 //    hexagono.translate(0,0.47,0); //quando hex esta deitado
     hexagono.rotateY(150);
-    hexagono.translate(0,0.9,0.5);
+    hexagono.translate(0,0.5,0.5);
     addObject(hexagono);
 
     //Hexagono 2
@@ -170,7 +170,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    hexagono_2.rotateX(90);
 //    hexagono_2.translate(0,0.47,0); //quando hex esta deitado
     hexagono_2.rotateY(120);
-    hexagono_2.translate(0,0.9,-0.5);
+    hexagono_2.translate(0,0.5,-0.5);
     addObject(hexagono_2);
 
     Mesa mesa(metal);
