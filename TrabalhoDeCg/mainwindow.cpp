@@ -198,7 +198,7 @@ MainWindow::MainWindow(QWidget *parent) :
     double xamnt, yamnt;
 
     for (int j = 0; j < H; j++) {
-        //Uma thread paraca da linha da matriz de pixels
+        //Uma thread para cada linha da matriz de pixels
         #pragma omp parallel for
         for (int i = 0; i < W; i++) {
 
