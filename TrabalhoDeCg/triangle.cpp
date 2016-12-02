@@ -53,6 +53,8 @@ double Triangle::findIntersection(Ray ray) {
         return -1;
     }
 
+    //b is getting the distance from the polygon to the camera
+
     double b = normal.dotProduct(ray.origin().add(normal.multiply(distance).negative()));
     double distance2plane = -1*b/a;
 
