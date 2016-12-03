@@ -35,7 +35,13 @@ SOURCES += main.cpp\
     wind.cpp \
     mesa.cpp \
     hex.cpp \
-    bed.cpp
+    bed.cpp \
+    laptop.cpp \
+    lamp.cpp \
+    chair.cpp \
+    tv.cpp \
+    desk.cpp \
+    closet.cpp
 
 HEADERS  += mainwindow.h \
     vector.h \
@@ -55,6 +61,12 @@ HEADERS  += mainwindow.h \
     wind.h \
     mesa.h \
     hex.h \
-    bed.h
+    bed.h \
+    laptop.h \
+    lamp.h \
+    chair.h \
+    tv.h \
+    desk.h \
+    closet.h
 
 FORMS    += mainwindow.ui
