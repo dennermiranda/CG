@@ -16,7 +16,8 @@ Bed::Bed(Material m) {
     ObjReader reader;
 
 //    reader.read("/Users/Pedro/Desktop/CG/TrabalhoDeCg/bed.obj", m);
-    reader.read("/Users/Pedro/Desktop/CG/Obj/bed.obj", m);
+//    reader.read("/Users/Pedro/Desktop/CG/Obj/bed.obj", m);
+    reader.read("bed.obj", m);
 
     faces = reader.getFaces();
     bottomY = reader.getBottomY();
