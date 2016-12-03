@@ -66,7 +66,8 @@ SOURCES       = ../TrabalhoDeCg/main.cpp \
 		../TrabalhoDeCg/cubo.cpp \
 		../TrabalhoDeCg/wind.cpp \
 		../TrabalhoDeCg/mesa.cpp \
-		../TrabalhoDeCg/hex.cpp moc_mainwindow.cpp
+		../TrabalhoDeCg/hex.cpp \
+		../TrabalhoDeCg/bed.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		vector.o \
@@ -86,6 +87,7 @@ OBJECTS       = main.o \
 		wind.o \
 		mesa.o \
 		hex.o \
+		bed.o \
 		moc_mainwindow.o
 DIST          = ../../../Qt5.7.0/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.7.0/5.7/clang_64/mkspecs/qdevice.pri \
@@ -259,7 +261,8 @@ DIST          = ../../../Qt5.7.0/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../TrabalhoDeCg/cubo.h \
 		../TrabalhoDeCg/wind.h \
 		../TrabalhoDeCg/mesa.h \
-		../TrabalhoDeCg/hex.h ../TrabalhoDeCg/main.cpp \
+		../TrabalhoDeCg/hex.h \
+		../TrabalhoDeCg/bed.h ../TrabalhoDeCg/main.cpp \
 		../TrabalhoDeCg/mainwindow.cpp \
 		../TrabalhoDeCg/vector.cpp \
 		../TrabalhoDeCg/ray.cpp \
@@ -277,7 +280,8 @@ DIST          = ../../../Qt5.7.0/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../TrabalhoDeCg/cubo.cpp \
 		../TrabalhoDeCg/wind.cpp \
 		../TrabalhoDeCg/mesa.cpp \
-		../TrabalhoDeCg/hex.cpp
+		../TrabalhoDeCg/hex.cpp \
+		../TrabalhoDeCg/bed.cpp
 QMAKE_TARGET  = Trabalho
 DESTDIR       = 
 TARGET        = Trabalho.app/Contents/MacOS/Trabalho
@@ -638,8 +642,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../TrabalhoDeCg/mainwindow.h ../TrabalhoDeCg/vector.h ../TrabalhoDeCg/ray.h ../TrabalhoDeCg/camera.h ../TrabalhoDeCg/color.h ../TrabalhoDeCg/light.h ../TrabalhoDeCg/sphere.h ../TrabalhoDeCg/object.h ../TrabalhoDeCg/plane.h ../TrabalhoDeCg/triangle.h ../TrabalhoDeCg/objreader.h ../TrabalhoDeCg/primitive.h ../TrabalhoDeCg/torus.h ../TrabalhoDeCg/material.h ../TrabalhoDeCg/cubo.h ../TrabalhoDeCg/wind.h ../TrabalhoDeCg/mesa.h ../TrabalhoDeCg/hex.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../TrabalhoDeCg/main.cpp ../TrabalhoDeCg/mainwindow.cpp ../TrabalhoDeCg/vector.cpp ../TrabalhoDeCg/ray.cpp ../TrabalhoDeCg/camera.cpp ../TrabalhoDeCg/color.cpp ../TrabalhoDeCg/light.cpp ../TrabalhoDeCg/sphere.cpp ../TrabalhoDeCg/object.cpp ../TrabalhoDeCg/plane.cpp ../TrabalhoDeCg/triangle.cpp ../TrabalhoDeCg/objreader.cpp ../TrabalhoDeCg/primitive.cpp ../TrabalhoDeCg/torus.cpp ../TrabalhoDeCg/material.cpp ../TrabalhoDeCg/cubo.cpp ../TrabalhoDeCg/wind.cpp ../TrabalhoDeCg/mesa.cpp ../TrabalhoDeCg/hex.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../TrabalhoDeCg/mainwindow.h ../TrabalhoDeCg/vector.h ../TrabalhoDeCg/ray.h ../TrabalhoDeCg/camera.h ../TrabalhoDeCg/color.h ../TrabalhoDeCg/light.h ../TrabalhoDeCg/sphere.h ../TrabalhoDeCg/object.h ../TrabalhoDeCg/plane.h ../TrabalhoDeCg/triangle.h ../TrabalhoDeCg/objreader.h ../TrabalhoDeCg/primitive.h ../TrabalhoDeCg/torus.h ../TrabalhoDeCg/material.h ../TrabalhoDeCg/cubo.h ../TrabalhoDeCg/wind.h ../TrabalhoDeCg/mesa.h ../TrabalhoDeCg/hex.h ../TrabalhoDeCg/bed.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../TrabalhoDeCg/main.cpp ../TrabalhoDeCg/mainwindow.cpp ../TrabalhoDeCg/vector.cpp ../TrabalhoDeCg/ray.cpp ../TrabalhoDeCg/camera.cpp ../TrabalhoDeCg/color.cpp ../TrabalhoDeCg/light.cpp ../TrabalhoDeCg/sphere.cpp ../TrabalhoDeCg/object.cpp ../TrabalhoDeCg/plane.cpp ../TrabalhoDeCg/triangle.cpp ../TrabalhoDeCg/objreader.cpp ../TrabalhoDeCg/primitive.cpp ../TrabalhoDeCg/torus.cpp ../TrabalhoDeCg/material.cpp ../TrabalhoDeCg/cubo.cpp ../TrabalhoDeCg/wind.cpp ../TrabalhoDeCg/mesa.cpp ../TrabalhoDeCg/hex.cpp ../TrabalhoDeCg/bed.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../TrabalhoDeCg/mainwindow.ui $(DISTDIR)/
 
 
@@ -839,14 +843,24 @@ mesa.o: ../TrabalhoDeCg/mesa.cpp ../TrabalhoDeCg/mesa.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mesa.o ../TrabalhoDeCg/mesa.cpp
 
 hex.o: ../TrabalhoDeCg/hex.cpp ../TrabalhoDeCg/hex.h \
-		../TrabalhoDeCg/objreader.h \
 		../TrabalhoDeCg/object.h \
 		../TrabalhoDeCg/material.h \
 		../TrabalhoDeCg/color.h \
 		../TrabalhoDeCg/ray.h \
 		../TrabalhoDeCg/vector.h \
-		../TrabalhoDeCg/primitive.h
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o hex.o ../TrabalhoDeCg/hex.cpp
+
+bed.o: ../TrabalhoDeCg/bed.cpp ../TrabalhoDeCg/bed.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bed.o ../TrabalhoDeCg/bed.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -25,6 +25,7 @@
 #include "wind.h"
 #include "mesa.h"
 #include "hex.h"
+#include "bed.h"
 
 using namespace std;
 
@@ -136,46 +137,52 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-
-    //Torus
-
-    Torus torus(red);
-//    torus.scale(0.5,0.5,0.5);
-//    torus.translate(0.75,1,0);
-//    addObject(torus);
+    //Ground:
     Plane ground(Vector(0,1,0), -3, brown);
     addPrimitive(&ground);
 
-    //Windmll
+//    Random objects:
 
-    Wind wind(metal);
-//    wind.scale(0.03,0.03,0.03);
-//    wind.rotateX(270);
-//    addObject(wind);
+//    //Torus
 
-    //Hexagono
+//    Torus torus(red);
+////    torus.scale(0.5,0.5,0.5);
+////    torus.translate(0.75,1,0);
+////    addObject(torus);
 
-    Hex hexagono(green);
-    hexagono.scale(0.015,0.015,0.015);
-//    hexagono.rotateX(90);
-//    hexagono.translate(0,0.47,0); //quando hex esta deitado
-    hexagono.rotateY(150);
-    hexagono.translate(0,0.5,0.5);
-    addObject(hexagono);
 
-    //Hexagono 2
+//    //Windmll
+//    Wind wind(metal);
+////    wind.scale(0.03,0.03,0.03);
+////    wind.rotateX(270);
+////    addObject(wind);
 
-    Hex hexagono_2(brass);
-    hexagono_2.scale(0.015,0.015,0.015);
-//    hexagono_2.rotateX(90);
-//    hexagono_2.translate(0,0.47,0); //quando hex esta deitado
-    hexagono_2.rotateY(120);
-    hexagono_2.translate(0,0.5,-0.5);
-    addObject(hexagono_2);
+//    //Hexagono
+//    Hex hexagono(green);
+//    hexagono.scale(0.015,0.015,0.015);
+////    hexagono.rotateX(90);
+////    hexagono.translate(0,0.47,0); //quando hex esta deitado
+//    hexagono.rotateY(150);
+//    hexagono.translate(0,0.5,0.5);
+//    addObject(hexagono);
 
-    Mesa mesa(metal);
-    addObject(mesa);
-    mesa.rotateY(60);
+//    //Hexagono 2
+//    Hex hexagono_2(brass);
+//    hexagono_2.scale(0.015,0.015,0.015);
+////    hexagono_2.rotateX(90);
+////    hexagono_2.translate(0,0.47,0); //quando hex esta deitado
+//    hexagono_2.rotateY(120);
+//    hexagono_2.translate(0,0.5,-0.5);
+//    addObject(hexagono_2);
+
+//    Mesa mesa(metal);
+//    addObject(mesa);
+//    mesa.rotateY(60);
+
+    Bed bed(metal);
+    bed.scale(0.03,0.03,0.03);
+//    bed.rotateY(60);
+    addObject(bed);
 
     double aspectRatio = (double)W / (double)H;
 
