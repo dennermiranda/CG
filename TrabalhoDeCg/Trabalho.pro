@@ -10,10 +10,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Trabalho
 TEMPLATE = app
-#QMAKE_CXXFLAGS+= -openmp
-#QMAKE_LFLAGS +=  -openmp
-QMAKE_CXXFLAGS += -fopenmp
-LIBS += -fopenmp
+QMAKE_CXXFLAGS+= -openmp
+QMAKE_LFLAGS +=  -openmp
+#QMAKE_CXXFLAGS += -fopenmp
+#LIBS += -fopenmp
 
 
 SOURCES += main.cpp\
