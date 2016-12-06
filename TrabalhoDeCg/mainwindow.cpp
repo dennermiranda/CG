@@ -42,8 +42,8 @@ vector<Light *> light_sources;
 
 double accuracy = 0.0000000001;
 
-int W = 320*1.5;
-int H = 240*1.5;
+int W = 320*2;
+int H = 240*2;
 
 Color white(1.0, 1.0, 1.0);
 Color black(0, 0, 0);
