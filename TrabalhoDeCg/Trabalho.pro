@@ -41,7 +41,9 @@ SOURCES += main.cpp\
     chair.cpp \
     tv.cpp \
     desk.cpp \
-    closet.cpp
+    closet.cpp \
+    cenario.cpp \
+    canto.cpp
 
 HEADERS  += mainwindow.h \
     vector.h \
@@ -67,6 +69,8 @@ HEADERS  += mainwindow.h \
     chair.h \
     tv.h \
     desk.h \
-    closet.h
+    closet.h \
+    cenario.h \
+    canto.h
 
 FORMS    += mainwindow.ui

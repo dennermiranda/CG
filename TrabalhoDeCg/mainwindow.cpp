@@ -32,6 +32,8 @@
 #include "chair.h"
 #include "desk.h"
 #include "tv.h"
+#include "cenario.h"
+#include "canto.h"
 
 
 using namespace std;
@@ -42,16 +44,16 @@ vector<Light *> light_sources;
 
 double accuracy = 0.0000000001;
 
-int W = 320*2;
-int H = 240*2;
+int W = 320*3;
+int H = 240*3;
 
 Color white(1.0, 1.0, 1.0);
 Color black(0, 0, 0);
 
 Material green(Color(0.2, 0.2, 0.2), Color(0.5, 1.0, 0.5), Color(0.5, 1.0, 0.5), 2);
 Material brown(Color(0.2, 0.2, 0.2), Color(0.4, 0.2, 0.25), Color(0.1, 0.1, 0.1), 0);
-Material metal(Color(0.2, 0.2, 0.2), Color(0.1, 0.1, 0.1), Color(1, 1, 1), 5);
-Material red(Color(0.2, 0.2, 0.2), Color(1,0.1,0.1), Color(1, 1, 1), 20);
+Material metal(Color(0.2, 0.2, 0.2), Color(0.1, 0.1, 0.1), Color(1, 1, 1), 50);
+Material red(Color(0.2, 0.2, 0.2), Color(1,0.1,0.1), Color(1, 1, 1), 70);
 Material brass(Color(0.33, 0.22, 0.03), Color(0.78, 0.57, 0.11), Color(0.99, 0.91, 0.81), 27.8);
 Material piso1(Color(0.8, 0.8, 0.8), Color(0.8, 0.8, 0.8), Color(0.8, 0.8, 0.8), 1);
 Material blacktv(Color(0, 0, 0), Color(0, 0, 0), Color(0, 0, 0), 1);
@@ -188,76 +190,82 @@ MainWindow::MainWindow(QWidget *parent) :
     addObject(mesa);
     mesa.rotateY(60);
 
+    //Piso:
+    Cubo piso(piso1);
+    piso.scale(3, 0.1, 2.5);
+    piso.translate(0,-1.3,-1);
+    addObject(piso);
 */
 
+    //Movel de canto
+    Laptop notebook(red);
+    notebook.rotateY(-45);
+    notebook.scale(0.005, 0.005, 0.005);
+    notebook.translate(-1.45, 0.15, -2.75);
+    addObject(notebook);
 
     //Televisao:
-    Tv televisao(blacktv);
+    Tv televisao(metal);
     televisao.scale(0.01,0.01,0.01);
-//    televisao.rotateY(270);
-    televisao.translate(0.5,0.5,-2.5);
+    televisao.translate(0.25,0.5,-3.1);
     addObject(televisao);
 
     //Closet:
     Closet armario(metal);
     armario.scale(0.0035,0.0035,0.0035);
     armario.rotateY(270);
-    armario.translate(2.5,0,0);
+    armario.translate(2.2, 0, -1);
     addObject(armario);
 
 
     //Cadeira:
     Chair cadeira(metal);
     cadeira.scale(0.012,0.012,0.012);
-    cadeira.rotateY(270);
-    cadeira.translate(-1,0,0.3);
+    cadeira.rotateY(230);
+    cadeira.translate(-1, -0.45, -2.35);
     addObject(cadeira);
 
     //Mesa:
     Desk mesa(metal);
-    mesa.scale(0.015,0.015,0.015);
-    mesa.rotateY(180);
-    mesa.translate(-1.5,0,0.85);
+    mesa.rotateY(90);
+    mesa.scale(0.02,0.02,0.02);
+    mesa.translate(-2.1,-0.5,-2.65);
     addObject(mesa);
 
     //Cama:
     Bed cama(metal);
     cama.scale(0.1,0.1,0.1);
-//    cama.translate(0.0, 0.0, 0.0);
     cama.rotateY(90);
+    cama.translate(0.0, -0.25, 0.25);
     addObject(cama);
-
-    //Piso:
-    Cubo piso(piso1);
-    piso.scale(3, 0.1, 2.5);
-    piso.translate(0,-1.3,-1);
-    addObject(piso);
-
-    //Parede Frente
-//    Cubo parede1(metal);
-//    parede1.scale(3, 0.1, 1.25);
-//    parede1.rotateX(90);
-//    parede1.translate(0, 1.25, -2);
-//    addObject(parede1);
 
     //Criado mudo 1:
     Mesa cmudo1(metal);
     cmudo1.scale(0.1, 0.3, 0.183);
-    cmudo1.translate(1.2, 0.0, 0.7);
+    cmudo1.translate(1.2, 0.0, 0.9);
     addObject(cmudo1);
 
     //Criado mudo 2:
     Mesa cmudo2(metal);
     cmudo2.scale(0.1, 0.3, 0.183);
-    cmudo2.translate(-0.4, 0.0, 0.7);
+    cmudo2.translate(-0.4, 0.0, 0.9);
     addObject(cmudo2);
+
+    //Cenario
+    Cenario quarto(red);
+    quarto.scale(0.75,0.5,0.75);
+    quarto.rotateY(90);
+    quarto.translate(0,-0.5,-1);
+    addObject(quarto);
 
     double aspectRatio = (double)W / (double)H;
 
 //    Vector camera_position(-6, 0.3, 3);
 //    Vector camera_position(-6, 4, 3);
 //    Vector camera_position(0, 4, 4);
-    Vector camera_position(2, 4, 4);
+    Vector camera_position(2, 5, 4);
+//    Vector camera_position(6, 0, -2); //de lado
+//    Vector camera_position(-2, 5, -2);
 
     Vector look_at(0, 0, 0);
     Vector up(0, 1, 0);

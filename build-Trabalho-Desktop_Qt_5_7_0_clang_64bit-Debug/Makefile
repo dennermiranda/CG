@@ -73,7 +73,9 @@ SOURCES       = ../TrabalhoDeCg/main.cpp \
 		../TrabalhoDeCg/chair.cpp \
 		../TrabalhoDeCg/tv.cpp \
 		../TrabalhoDeCg/desk.cpp \
-		../TrabalhoDeCg/closet.cpp moc_mainwindow.cpp
+		../TrabalhoDeCg/closet.cpp \
+		../TrabalhoDeCg/cenario.cpp \
+		../TrabalhoDeCg/canto.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		vector.o \
@@ -100,6 +102,8 @@ OBJECTS       = main.o \
 		tv.o \
 		desk.o \
 		closet.o \
+		cenario.o \
+		canto.o \
 		moc_mainwindow.o
 DIST          = ../../../Qt5.7.0/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.7.0/5.7/clang_64/mkspecs/qdevice.pri \
@@ -280,7 +284,9 @@ DIST          = ../../../Qt5.7.0/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../TrabalhoDeCg/chair.h \
 		../TrabalhoDeCg/tv.h \
 		../TrabalhoDeCg/desk.h \
-		../TrabalhoDeCg/closet.h ../TrabalhoDeCg/main.cpp \
+		../TrabalhoDeCg/closet.h \
+		../TrabalhoDeCg/cenario.h \
+		../TrabalhoDeCg/canto.h ../TrabalhoDeCg/main.cpp \
 		../TrabalhoDeCg/mainwindow.cpp \
 		../TrabalhoDeCg/vector.cpp \
 		../TrabalhoDeCg/ray.cpp \
@@ -305,7 +311,9 @@ DIST          = ../../../Qt5.7.0/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../TrabalhoDeCg/chair.cpp \
 		../TrabalhoDeCg/tv.cpp \
 		../TrabalhoDeCg/desk.cpp \
-		../TrabalhoDeCg/closet.cpp
+		../TrabalhoDeCg/closet.cpp \
+		../TrabalhoDeCg/cenario.cpp \
+		../TrabalhoDeCg/canto.cpp
 QMAKE_TARGET  = Trabalho
 DESTDIR       = 
 TARGET        = Trabalho.app/Contents/MacOS/Trabalho
@@ -666,8 +674,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../TrabalhoDeCg/mainwindow.h ../TrabalhoDeCg/vector.h ../TrabalhoDeCg/ray.h ../TrabalhoDeCg/camera.h ../TrabalhoDeCg/color.h ../TrabalhoDeCg/light.h ../TrabalhoDeCg/sphere.h ../TrabalhoDeCg/object.h ../TrabalhoDeCg/plane.h ../TrabalhoDeCg/triangle.h ../TrabalhoDeCg/objreader.h ../TrabalhoDeCg/primitive.h ../TrabalhoDeCg/torus.h ../TrabalhoDeCg/material.h ../TrabalhoDeCg/cubo.h ../TrabalhoDeCg/wind.h ../TrabalhoDeCg/mesa.h ../TrabalhoDeCg/hex.h ../TrabalhoDeCg/bed.h ../TrabalhoDeCg/laptop.h ../TrabalhoDeCg/lamp.h ../TrabalhoDeCg/chair.h ../TrabalhoDeCg/tv.h ../TrabalhoDeCg/desk.h ../TrabalhoDeCg/closet.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../TrabalhoDeCg/main.cpp ../TrabalhoDeCg/mainwindow.cpp ../TrabalhoDeCg/vector.cpp ../TrabalhoDeCg/ray.cpp ../TrabalhoDeCg/camera.cpp ../TrabalhoDeCg/color.cpp ../TrabalhoDeCg/light.cpp ../TrabalhoDeCg/sphere.cpp ../TrabalhoDeCg/object.cpp ../TrabalhoDeCg/plane.cpp ../TrabalhoDeCg/triangle.cpp ../TrabalhoDeCg/objreader.cpp ../TrabalhoDeCg/primitive.cpp ../TrabalhoDeCg/torus.cpp ../TrabalhoDeCg/material.cpp ../TrabalhoDeCg/cubo.cpp ../TrabalhoDeCg/wind.cpp ../TrabalhoDeCg/mesa.cpp ../TrabalhoDeCg/hex.cpp ../TrabalhoDeCg/bed.cpp ../TrabalhoDeCg/laptop.cpp ../TrabalhoDeCg/lamp.cpp ../TrabalhoDeCg/chair.cpp ../TrabalhoDeCg/tv.cpp ../TrabalhoDeCg/desk.cpp ../TrabalhoDeCg/closet.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../TrabalhoDeCg/mainwindow.h ../TrabalhoDeCg/vector.h ../TrabalhoDeCg/ray.h ../TrabalhoDeCg/camera.h ../TrabalhoDeCg/color.h ../TrabalhoDeCg/light.h ../TrabalhoDeCg/sphere.h ../TrabalhoDeCg/object.h ../TrabalhoDeCg/plane.h ../TrabalhoDeCg/triangle.h ../TrabalhoDeCg/objreader.h ../TrabalhoDeCg/primitive.h ../TrabalhoDeCg/torus.h ../TrabalhoDeCg/material.h ../TrabalhoDeCg/cubo.h ../TrabalhoDeCg/wind.h ../TrabalhoDeCg/mesa.h ../TrabalhoDeCg/hex.h ../TrabalhoDeCg/bed.h ../TrabalhoDeCg/laptop.h ../TrabalhoDeCg/lamp.h ../TrabalhoDeCg/chair.h ../TrabalhoDeCg/tv.h ../TrabalhoDeCg/desk.h ../TrabalhoDeCg/closet.h ../TrabalhoDeCg/cenario.h ../TrabalhoDeCg/canto.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../TrabalhoDeCg/main.cpp ../TrabalhoDeCg/mainwindow.cpp ../TrabalhoDeCg/vector.cpp ../TrabalhoDeCg/ray.cpp ../TrabalhoDeCg/camera.cpp ../TrabalhoDeCg/color.cpp ../TrabalhoDeCg/light.cpp ../TrabalhoDeCg/sphere.cpp ../TrabalhoDeCg/object.cpp ../TrabalhoDeCg/plane.cpp ../TrabalhoDeCg/triangle.cpp ../TrabalhoDeCg/objreader.cpp ../TrabalhoDeCg/primitive.cpp ../TrabalhoDeCg/torus.cpp ../TrabalhoDeCg/material.cpp ../TrabalhoDeCg/cubo.cpp ../TrabalhoDeCg/wind.cpp ../TrabalhoDeCg/mesa.cpp ../TrabalhoDeCg/hex.cpp ../TrabalhoDeCg/bed.cpp ../TrabalhoDeCg/laptop.cpp ../TrabalhoDeCg/lamp.cpp ../TrabalhoDeCg/chair.cpp ../TrabalhoDeCg/tv.cpp ../TrabalhoDeCg/desk.cpp ../TrabalhoDeCg/closet.cpp ../TrabalhoDeCg/cenario.cpp ../TrabalhoDeCg/canto.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../TrabalhoDeCg/mainwindow.ui $(DISTDIR)/
 
 
@@ -751,7 +759,15 @@ mainwindow.o: ../TrabalhoDeCg/mainwindow.cpp ../TrabalhoDeCg/mainwindow.h \
 		../TrabalhoDeCg/wind.h \
 		../TrabalhoDeCg/mesa.h \
 		../TrabalhoDeCg/hex.h \
-		../TrabalhoDeCg/bed.h
+		../TrabalhoDeCg/bed.h \
+		../TrabalhoDeCg/closet.h \
+		../TrabalhoDeCg/lamp.h \
+		../TrabalhoDeCg/laptop.h \
+		../TrabalhoDeCg/chair.h \
+		../TrabalhoDeCg/desk.h \
+		../TrabalhoDeCg/tv.h \
+		../TrabalhoDeCg/cenario.h \
+		../TrabalhoDeCg/canto.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../TrabalhoDeCg/mainwindow.cpp
 
 vector.o: ../TrabalhoDeCg/vector.cpp ../TrabalhoDeCg/vector.h
@@ -946,6 +962,26 @@ closet.o: ../TrabalhoDeCg/closet.cpp ../TrabalhoDeCg/closet.h \
 		../TrabalhoDeCg/primitive.h \
 		../TrabalhoDeCg/objreader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o closet.o ../TrabalhoDeCg/closet.cpp
+
+cenario.o: ../TrabalhoDeCg/cenario.cpp ../TrabalhoDeCg/cenario.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/cubo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cenario.o ../TrabalhoDeCg/cenario.cpp
+
+canto.o: ../TrabalhoDeCg/canto.cpp ../TrabalhoDeCg/canto.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o canto.o ../TrabalhoDeCg/canto.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
