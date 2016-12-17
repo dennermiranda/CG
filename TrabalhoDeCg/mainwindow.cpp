@@ -44,8 +44,8 @@ vector<Light *> light_sources;
 
 double accuracy = 0.0000000001;
 
-int W = 320*3;
-int H = 240*3;
+int W = 320*2;
+int H = 240*2;
 
 Color white(1.0, 1.0, 1.0);
 Color black(0, 0, 0);
@@ -57,6 +57,33 @@ Material red(Color(0.2, 0.2, 0.2), Color(1,0.1,0.1), Color(1, 1, 1), 70);
 Material brass(Color(0.33, 0.22, 0.03), Color(0.78, 0.57, 0.11), Color(0.99, 0.91, 0.81), 27.8);
 Material piso1(Color(0.8, 0.8, 0.8), Color(0.8, 0.8, 0.8), Color(0.8, 0.8, 0.8), 1);
 Material blacktv(Color(0, 0, 0), Color(0, 0, 0), Color(0, 0, 0), 1);
+Material realRed(Color(0.7, 0.0, 0.0), Color(0.7, 0.0, 0.0), Color(1, 1, 1), 70);
+Material realYellow(Color(0.6, 0.8, 0.0), Color(0.6, 0.8, 0.0), Color(1, 1, 1), 70);
+Material realBrown(Color(0.7, 0.5, 0.3), Color(0.7, 0.5, 0.3), Color(0.7, 0.5, 0.3), 70);
+
+
+//Materiais & texturas:
+
+Material gold(Color(0.25, 0.20, 0.07), Color(0.75, 0.61, 0.23), Color(0.63, 0.65, 0.37), 70); //0.2
+Material emerald(Color(0.0215, 0.1745, 0.0215), Color(0.07568, 0.61424, 0.07568), Color(0.633, 0.727811, 0.633), 70); //0.6
+Material jade(Color(0.135, 0.2225, 0.1575), Color(0.54, 0.89, 0.63), Color(0.31622, 0.31622, 0.31622), 70); //0.1
+Material silver(Color(0.19, 0.19, 0.19), Color(0.51, 0.51, 0.51), Color(0.51, 0.51, 0.51), 70); //0.4
+Material ruby(Color(0.1745, 0.01175, 0.01175), Color(0.61424, 0.04136, 0.04136), Color(0.727811, 0.626959, 0.626959), 0.6); //0.6
+Material copper(Color(0.19, 0.07, 0.02), Color(0.7, 0.27, 0.08), Color(0.26, 0.14, 0.09), 70); //0.1
+
+//Plastico:
+
+Material blackPlastic(Color(0.0, 0.0, 0.0), Color(0.01, 0.01, 0.01), Color(0.5, 0.5, 0.5), 70); //0.25
+Material cyanPlastic(Color(0, 0.1, 0.06), Color(0, 0.509803, 0.509803), Color(0.50196078, 0.50196078, 0.50196078), 0.25); //0.25
+Material greenPlastic(Color(0, 0, 0), Color(0.1, 0.35, 0.1), Color(0.45, 0.55, 0.45), 70); //0.25
+Material yellowPlastic(Color(0.0, 0.0, 0.0), Color(0.5, 0.5, 0.0), Color(0.6, 0.6, 0.5), 70); //0.25
+
+//Borracha:
+
+Material greenRubber(Color(0.05, 0.05, 0.0), Color(0.5, 0.5, 0.4), Color(0.7, 0.7, 0.04), 0.078125); //0.078125
+Material whiteRubber(Color(0.05, 0.05, 0.0), Color(0.5, 0.5, 0.5), Color(0.7, 0.7, 0.7), 0.078125); //0.078125
+Material yellowRubber(Color(0.05, 0.05, 0.0), Color(0.5, 0.5, 0.4), Color(0.7, 0.7, 0.04), 70); //0.078125
+
 
 Vector X(1, 0, 0);
 Vector Y(0, 1, 0);
@@ -197,21 +224,22 @@ MainWindow::MainWindow(QWidget *parent) :
     addObject(piso);
 */
 
-    //Movel de canto
-    Laptop notebook(red);
+/*
+    //laptop:
+    Laptop notebook(silver);
     notebook.rotateY(-45);
     notebook.scale(0.005, 0.005, 0.005);
     notebook.translate(-1.45, 0.15, -2.75);
     addObject(notebook);
 
     //Televisao:
-    Tv televisao(metal);
+    Tv televisao(blackPlastic);
     televisao.scale(0.01,0.01,0.01);
     televisao.translate(0.25,0.5,-3.1);
     addObject(televisao);
 
     //Closet:
-    Closet armario(metal);
+    Closet armario(copper);
     armario.scale(0.0035,0.0035,0.0035);
     armario.rotateY(270);
     armario.translate(2.2, 0, -1);
@@ -219,40 +247,56 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     //Cadeira:
-    Chair cadeira(metal);
+    Chair cadeira(gold);
     cadeira.scale(0.012,0.012,0.012);
     cadeira.rotateY(230);
     cadeira.translate(-1, -0.45, -2.35);
     addObject(cadeira);
 
     //Mesa:
-    Desk mesa(metal);
+    Desk mesa(copper);
     mesa.rotateY(90);
     mesa.scale(0.02,0.02,0.02);
     mesa.translate(-2.1,-0.5,-2.65);
     addObject(mesa);
 
     //Cama:
-    Bed cama(metal);
+    Bed cama(jade);
     cama.scale(0.1,0.1,0.1);
     cama.rotateY(90);
     cama.translate(0.0, -0.25, 0.25);
     addObject(cama);
-
-    //Criado mudo 1:
-    Mesa cmudo1(metal);
+*/
+    //Criado mudo 1 (direita):
+    Mesa cmudo1(ruby);
     cmudo1.scale(0.1, 0.3, 0.183);
     cmudo1.translate(1.2, 0.0, 0.9);
     addObject(cmudo1);
 
-    //Criado mudo 2:
-    Mesa cmudo2(metal);
+/*
+
+    //Criado mudo 2 (esquerda):
+    Mesa cmudo2(greenPlastic);
     cmudo2.scale(0.1, 0.3, 0.183);
     cmudo2.translate(-0.4, 0.0, 0.9);
     addObject(cmudo2);
 
+    //Luminaria mesa 1
+    Lamp luminaria1(gold);
+    luminaria1.scale(0.01, 0.01, 0.01);
+    luminaria1.rotateY(230);
+    luminaria1.translate(1.2, 0.0, 0.9);
+    addObject(luminaria1);
+
+    //Luminaria mesa 2
+    Lamp luminaria2(gold);
+    luminaria2.scale(0.01, 0.01, 0.01);
+    luminaria2.rotateY(90);
+    luminaria2.translate(-0.4, 0.0, 0.9);
+    addObject(luminaria2);
+*/
     //Cenario
-    Cenario quarto(red);
+    Cenario quarto(silver);
     quarto.scale(0.75,0.5,0.75);
     quarto.rotateY(90);
     quarto.translate(0,-0.5,-1);
@@ -264,7 +308,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    Vector camera_position(-6, 4, 3);
 //    Vector camera_position(0, 4, 4);
     Vector camera_position(2, 5, 4);
-//    Vector camera_position(6, 0, -2); //de lado
+//    Vector camera_position(4, 1, 0); //de lado
 //    Vector camera_position(-2, 5, -2);
 
     Vector look_at(0, 0, 0);
