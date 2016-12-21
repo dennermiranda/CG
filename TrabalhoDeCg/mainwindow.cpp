@@ -42,7 +42,7 @@ using namespace std;
 vector<Primitive *> objects;
 vector<Light *> light_sources;
 
-double accuracy = 0.0000000001;
+//double accuracy = 0.0000000001;
 
 int W = 320*2;
 int H = 240*2;
@@ -91,11 +91,11 @@ Vector Z(0, 0, 1);
 Vector O(0, 0, 0);
 
 long  getIndexOfClosestObject(vector<double>  intersections) {
-    // para se nao toca em nada
-    if (intersections.size() == 0)
+
+    if (intersections.size() == 0) //return null if intersections vector is empty
         return -1;
 
-    if (intersections.size() == 1) {
+    if (intersections.size() == 1) { //theres just one
         if (intersections.at(0) > 0)
             return 0;
        return -1;
@@ -105,7 +105,7 @@ long  getIndexOfClosestObject(vector<double>  intersections) {
     double index = -1;
     for (unsigned int j = 0; j < intersections.size(); j++) {
       if (intersections.at(j) > 0 && intersections.at(j) < min) {
-          min = intersections.at(j);
+          min = intersections.at(j); //Getting the nearest object
           index = j;
       }
     }
@@ -116,9 +116,9 @@ long  getIndexOfClosestObject(vector<double>  intersections) {
 Color getColorAt(Vector intersectionPoint, Vector camera_ray_direction, long index_of_closest_object) {
     //Modelo de iluminação de Phong
 
-    Primitive *closest_object = objects.at(index_of_closest_object);
-    Vector n = closest_object->getNormalAt(intersectionPoint);
-    Material object_material = closest_object->getMaterial();
+    Primitive *closest_object = objects.at(index_of_closest_object); //getting the closest obj
+    Vector n = closest_object->getNormalAt(intersectionPoint); //closest obj normal
+    Material object_material = closest_object->getMaterial(); //getting its material
 
     Color color(0, 0, 0);
     //color = color.scale(ambientLight);
