@@ -12,4 +12,13 @@ SOURCES += main.cpp \
     window.cpp
 
 HEADERS += \
-    window.h
+    window.h \
+    bed2.h \
+    canto.h \
+    chair.h \
+    closet.h \
+    desk.h \
+    lamp.h \
+    laptop.h \
+    som.h \
+    tv.h
