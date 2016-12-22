@@ -224,7 +224,6 @@ MainWindow::MainWindow(QWidget *parent) :
     addObject(piso);
 */
 
-/*
     //laptop:
     Laptop notebook(silver);
     notebook.rotateY(-45);
@@ -238,13 +237,13 @@ MainWindow::MainWindow(QWidget *parent) :
     televisao.translate(0.25,0.5,-3.1);
     addObject(televisao);
 
+
     //Closet:
     Closet armario(copper);
     armario.scale(0.0035,0.0035,0.0035);
     armario.rotateY(270);
     armario.translate(2.2, 0, -1);
     addObject(armario);
-
 
     //Cadeira:
     Chair cadeira(gold);
@@ -266,14 +265,12 @@ MainWindow::MainWindow(QWidget *parent) :
     cama.rotateY(90);
     cama.translate(0.0, -0.25, 0.25);
     addObject(cama);
-*/
+
     //Criado mudo 1 (direita):
     Mesa cmudo1(ruby);
     cmudo1.scale(0.1, 0.3, 0.183);
     cmudo1.translate(1.2, 0.0, 0.9);
     addObject(cmudo1);
-
-/*
 
     //Criado mudo 2 (esquerda):
     Mesa cmudo2(greenPlastic);
@@ -294,22 +291,21 @@ MainWindow::MainWindow(QWidget *parent) :
     luminaria2.rotateY(90);
     luminaria2.translate(-0.4, 0.0, 0.9);
     addObject(luminaria2);
-*/
+
     //Cenario
     Cenario quarto(silver);
     quarto.scale(0.75,0.5,0.75);
     quarto.rotateY(90);
     quarto.translate(0,-0.5,-1);
     addObject(quarto);
-
     double aspectRatio = (double)W / (double)H;
 
 //    Vector camera_position(-6, 0.3, 3);
 //    Vector camera_position(-6, 4, 3);
 //    Vector camera_position(0, 4, 4);
-    Vector camera_position(2, 5, 4);
-//    Vector camera_position(4, 1, 0); //de lado
-//    Vector camera_position(-2, 5, -2);
+    Vector camera_position(2, 5, 4); //visao de canto
+//    Vector camera_position(8, 0, 1); //de lado
+//    Vector camera_position(0, 3, 4); //de frente
 
     Vector look_at(0, 0, 0);
     Vector up(0, 1, 0);

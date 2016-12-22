@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui opengl
-LIBS = -lopengl32 -lglut32
+#LIBS = -lopengl32 -lglut32
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

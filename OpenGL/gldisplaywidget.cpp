@@ -190,7 +190,7 @@ void glDisplayWidget::drawScene() {
     glTranslatef(0, -0.17, 0);
     glRotatef(90, 0, 1, 0);
 
-    glColor3f(1.0,0,0);
+    glColor3f(0,1,0);
     for (int i=0;i<bed2NumVerts*3;i=i+9) {
         Vector vect1 = Vector(bed2Verts [i],bed2Verts [i+1],bed2Verts [i+2]);
         Vector vect2 = Vector(bed2Verts [i+3],bed2Verts [i+4],bed2Verts [i+5]);

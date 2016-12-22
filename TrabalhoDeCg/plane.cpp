@@ -14,13 +14,13 @@ Plane::Plane(Vector n, double d, Material material):normal(n), distance(d){
 double Plane::findIntersection(Ray ray) {
     Vector ray_direction = ray.direction();
 
-    double a = ray_direction.dotProduct(normal);
+    double a = ray_direction.dotProduct(normal); //n*rd - produto escalar da normal com a direcao do raio
 
     if (a == 0) {
         // Raio paralelo ao plano
         return -1;
     }
-    double b = normal.dotProduct(ray.origin().add(normal.multiply(distance).negative())); //Pint
+    double b = normal.dotProduct(ray.origin().add(normal.multiply(distance).negative())); //Pint t = -(D+n*R0)/a
     return -1*b/a;
 
 }

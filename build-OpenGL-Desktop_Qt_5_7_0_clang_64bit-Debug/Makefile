@@ -225,13 +225,11 @@ DIST          = ../../../Qt5.7.0/5.7/clang_64/mkspecs/features/spec_pre.prf \
 		../OpenGL/OpenGL.pro ../OpenGL/mainwindow.h \
 		../OpenGL/gldisplaywidget.h \
 		../OpenGL/bed2.h \
-		../OpenGL/canto.h \
 		../OpenGL/chair.h \
 		../OpenGL/closet.h \
 		../OpenGL/desk.h \
 		../OpenGL/lamp.h \
 		../OpenGL/laptop.h \
-		../OpenGL/som.h \
 		../OpenGL/tv.h \
 		../OpenGL/vector.h \
 		../OpenGL/triangle.h \
@@ -607,7 +605,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../OpenGL/mainwindow.h ../OpenGL/gldisplaywidget.h ../OpenGL/bed2.h ../OpenGL/canto.h ../OpenGL/chair.h ../OpenGL/closet.h ../OpenGL/desk.h ../OpenGL/lamp.h ../OpenGL/laptop.h ../OpenGL/som.h ../OpenGL/tv.h ../OpenGL/vector.h ../OpenGL/triangle.h ../OpenGL/color.h ../OpenGL/primitive.h ../OpenGL/material.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../OpenGL/mainwindow.h ../OpenGL/gldisplaywidget.h ../OpenGL/bed2.h ../OpenGL/chair.h ../OpenGL/closet.h ../OpenGL/desk.h ../OpenGL/lamp.h ../OpenGL/laptop.h ../OpenGL/tv.h ../OpenGL/vector.h ../OpenGL/triangle.h ../OpenGL/color.h ../OpenGL/primitive.h ../OpenGL/material.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../OpenGL/main.cpp ../OpenGL/mainwindow.cpp ../OpenGL/gldisplaywidget.cpp ../OpenGL/vector.cpp ../OpenGL/triangle.cpp ../OpenGL/color.cpp ../OpenGL/primitive.cpp ../OpenGL/material.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../OpenGL/mainwindow.ui $(DISTDIR)/
 
@@ -703,6 +701,11 @@ gldisplaywidget.o: ../OpenGL/gldisplaywidget.cpp ../OpenGL/gldisplaywidget.h \
 		../../../Qt5.7.0/5.7/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../OpenGL/bed2.h \
 		../OpenGL/tv.h \
+		../OpenGL/chair.h \
+		../OpenGL/closet.h \
+		../OpenGL/desk.h \
+		../OpenGL/lamp.h \
+		../OpenGL/laptop.h \
 		../OpenGL/triangle.h \
 		../OpenGL/primitive.h \
 		../OpenGL/material.h \
