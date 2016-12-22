@@ -20,7 +20,7 @@ double Plane::findIntersection(Ray ray) {
         // Raio paralelo ao plano
         return -1;
     }
-    double b = normal.dotProduct(ray.origin().add(normal.multiply(distance).negative()));
+    double b = normal.dotProduct(ray.origin().add(normal.multiply(distance).negative())); //Pint
     return -1*b/a;
 
 }

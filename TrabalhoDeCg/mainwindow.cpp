@@ -135,10 +135,10 @@ Color getColorAt(Vector intersectionPoint, Vector camera_ray_direction, long ind
         if (cossine > 0) {
 
             // Componente Difusa
-            color = color.add(light_color_d.multiply(object_material.kd()).scale(cossine));
+            color = color.add(light_color_d.multiply(object_material.kd()).scale(cossine)); //Luz + luz difusa
 
             //Componente especular
-            Vector v = camera_ray_direction.negative();
+            Vector v = camera_ray_direction.negative(); //Vetor do ray
             double _2ln = 2*l.dotProduct(n);
             Vector _2lnn = n.multiply(_2ln);
             Vector r = _2lnn.add(l.negative()).normalize();
@@ -146,7 +146,7 @@ Color getColorAt(Vector intersectionPoint, Vector camera_ray_direction, long ind
             double specular = r.dotProduct(v);
 
             //if (specular > 0) {
-                color = color.add(light_color_s.multiply(object_material.ks()).scale(pow(specular, object_material.m())));
+                color = color.add(light_color_s.multiply(object_material.ks()).scale(pow(specular, object_material.m()))); //Multiplicando pela especular
             //}
 
         }
