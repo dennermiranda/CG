@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\gldisplaywidget.o
+./debug\vector.o
+./debug\triangle.o
+./debug\color.o
+./debug\primitive.o
+./debug\material.o
+./debug\moc_mainwindow.o
+./debug\moc_gldisplaywidget.o
+);

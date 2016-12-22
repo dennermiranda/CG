@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\gldisplaywidget.o
+./release\vector.o
+./release\triangle.o
+./release\color.o
+./release\primitive.o
+./release\material.o
+./release\moc_mainwindow.o
+./release\moc_gldisplaywidget.o
+);

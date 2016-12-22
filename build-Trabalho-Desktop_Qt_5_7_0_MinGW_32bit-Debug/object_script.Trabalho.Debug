@@ -19,5 +19,13 @@ INPUT(
 ./debug\mesa.o
 ./debug\hex.o
 ./debug\bed.o
+./debug\laptop.o
+./debug\lamp.o
+./debug\chair.o
+./debug\tv.o
+./debug\desk.o
+./debug\closet.o
+./debug\cenario.o
+./debug\canto.o
 ./debug\moc_mainwindow.o
 );

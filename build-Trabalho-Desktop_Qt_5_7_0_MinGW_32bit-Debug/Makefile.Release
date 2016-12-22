@@ -13,11 +13,11 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DUNICODE -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra $(DEFINES)
-CXXFLAGS      = -pipe -fno-keep-inline-dllexport -fopenmp -O2 -std=gnu++11 -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
+CXXFLAGS      = -pipe -fno-keep-inline-dllexport -openmp -O2 -std=gnu++11 -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
 INCPATH       = -I..\TrabalhoDeCg -I. -ID:\qt\5.7\mingw53_32\include -ID:\qt\5.7\mingw53_32\include\QtWidgets -ID:\qt\5.7\mingw53_32\include\QtGui -ID:\qt\5.7\mingw53_32\include\QtANGLE -ID:\qt\5.7\mingw53_32\include\QtCore -Irelease -I. -ID:\qt\5.7\mingw53_32\mkspecs\win32-g++ 
 LINKER      =        g++
-LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LD:\qt\5.7\mingw53_32\lib D:\qt\5.7\mingw53_32\lib\libqtmain.a -LC:\utils\postgresql\pgsql\lib -LC:\utils\my_sql\my_sql\lib -lshell32 -fopenmp D:\qt\5.7\mingw53_32\lib\libQt5Widgets.a D:\qt\5.7\mingw53_32\lib\libQt5Gui.a D:\qt\5.7\mingw53_32\lib\libQt5Core.a 
+LFLAGS        =        -openmp -Wl,-s -Wl,-subsystem,windows -mthreads
+LIBS        =        -lmingw32 -LD:\qt\5.7\mingw53_32\lib D:\qt\5.7\mingw53_32\lib\libqtmain.a -LC:\utils\postgresql\pgsql\lib -LC:\utils\my_sql\my_sql\lib -lshell32 D:\qt\5.7\mingw53_32\lib\libQt5Widgets.a D:\qt\5.7\mingw53_32\lib\libQt5Gui.a D:\qt\5.7\mingw53_32\lib\libQt5Core.a 
 QMAKE         = D:\qt\5.7\mingw53_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -62,7 +62,15 @@ SOURCES       = ..\TrabalhoDeCg\main.cpp \
 		..\TrabalhoDeCg\wind.cpp \
 		..\TrabalhoDeCg\mesa.cpp \
 		..\TrabalhoDeCg\hex.cpp \
-		..\TrabalhoDeCg\bed.cpp release\moc_mainwindow.cpp
+		..\TrabalhoDeCg\bed.cpp \
+		..\TrabalhoDeCg\laptop.cpp \
+		..\TrabalhoDeCg\lamp.cpp \
+		..\TrabalhoDeCg\chair.cpp \
+		..\TrabalhoDeCg\tv.cpp \
+		..\TrabalhoDeCg\desk.cpp \
+		..\TrabalhoDeCg\closet.cpp \
+		..\TrabalhoDeCg\cenario.cpp \
+		..\TrabalhoDeCg\canto.cpp release\moc_mainwindow.cpp
 OBJECTS       = release/main.o \
 		release/mainwindow.o \
 		release/vector.o \
@@ -83,6 +91,14 @@ OBJECTS       = release/main.o \
 		release/mesa.o \
 		release/hex.o \
 		release/bed.o \
+		release/laptop.o \
+		release/lamp.o \
+		release/chair.o \
+		release/tv.o \
+		release/desk.o \
+		release/closet.o \
+		release/cenario.o \
+		release/canto.o \
 		release/moc_mainwindow.o
 
 DIST          =  ..\TrabalhoDeCg\mainwindow.h \
@@ -103,7 +119,15 @@ DIST          =  ..\TrabalhoDeCg\mainwindow.h \
 		..\TrabalhoDeCg\wind.h \
 		..\TrabalhoDeCg\mesa.h \
 		..\TrabalhoDeCg\hex.h \
-		..\TrabalhoDeCg\bed.h ..\TrabalhoDeCg\main.cpp \
+		..\TrabalhoDeCg\bed.h \
+		..\TrabalhoDeCg\laptop.h \
+		..\TrabalhoDeCg\lamp.h \
+		..\TrabalhoDeCg\chair.h \
+		..\TrabalhoDeCg\tv.h \
+		..\TrabalhoDeCg\desk.h \
+		..\TrabalhoDeCg\closet.h \
+		..\TrabalhoDeCg\cenario.h \
+		..\TrabalhoDeCg\canto.h ..\TrabalhoDeCg\main.cpp \
 		..\TrabalhoDeCg\mainwindow.cpp \
 		..\TrabalhoDeCg\vector.cpp \
 		..\TrabalhoDeCg\ray.cpp \
@@ -122,7 +146,15 @@ DIST          =  ..\TrabalhoDeCg\mainwindow.h \
 		..\TrabalhoDeCg\wind.cpp \
 		..\TrabalhoDeCg\mesa.cpp \
 		..\TrabalhoDeCg\hex.cpp \
-		..\TrabalhoDeCg\bed.cpp
+		..\TrabalhoDeCg\bed.cpp \
+		..\TrabalhoDeCg\laptop.cpp \
+		..\TrabalhoDeCg\lamp.cpp \
+		..\TrabalhoDeCg\chair.cpp \
+		..\TrabalhoDeCg\tv.cpp \
+		..\TrabalhoDeCg\desk.cpp \
+		..\TrabalhoDeCg\closet.cpp \
+		..\TrabalhoDeCg\cenario.cpp \
+		..\TrabalhoDeCg\canto.cpp
 QMAKE_TARGET  = Trabalho
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = Trabalho.exe
@@ -145,7 +177,7 @@ dist:
 	$(ZIP) Trabalho.zip $(SOURCES) $(DIST) ..\TrabalhoDeCg\Trabalho.pro D:\qt\5.7\mingw53_32\mkspecs\features\spec_pre.prf D:\qt\5.7\mingw53_32\mkspecs\qdevice.pri D:\qt\5.7\mingw53_32\mkspecs\features\device_config.prf D:\qt\5.7\mingw53_32\mkspecs\common\angle.conf D:\qt\5.7\mingw53_32\mkspecs\qconfig.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dcore.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dcore_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dextras.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dextras_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dinput.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dinput_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dlogic.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dlogic_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquick.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquick_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickextras.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickextras_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickinput.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickinput_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickrender.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3dquickrender_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3drender.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_3drender_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axbase.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axbase_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axcontainer.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axcontainer_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axserver.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_axserver_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bluetooth.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bluetooth_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_bootstrap_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_clucene_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_concurrent.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_concurrent_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_core.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_core_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_dbus.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_dbus_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designer.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designer_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_designercomponents_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gamepad.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gamepad_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gui.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_gui_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_help.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_help_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_location.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_location_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimedia.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimedia_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_network.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_network_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_nfc.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_nfc_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_opengl.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_opengl_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_openglextensions.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_openglextensions_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_packetprotocol_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_platformsupport_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_positioning.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_positioning_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_printsupport.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_printsupport_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_purchasing.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_purchasing_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qml.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qml_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmldebug_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmldevtools_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmltest.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qmltest_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quick.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quick_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickcontrols2_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickparticles_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quicktemplates2_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickwidgets.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_quickwidgets_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_script.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_script_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scripttools.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scripttools_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scxml.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_scxml_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sensors.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sensors_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialbus.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialbus_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialport.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_serialport_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sql.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_sql_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_svg.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_svg_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_testlib.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_testlib_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uiplugin.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uitools.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_uitools_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_webchannel.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_webchannel_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_websockets.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_websockets_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_widgets.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_widgets_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_winextras.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_winextras_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xml.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xml_private.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns.pri D:\qt\5.7\mingw53_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri D:\qt\5.7\mingw53_32\mkspecs\features\qt_functions.prf D:\qt\5.7\mingw53_32\mkspecs\features\qt_config.prf D:\qt\5.7\mingw53_32\mkspecs\features\win32\qt_config.prf D:\qt\5.7\mingw53_32\mkspecs\win32-g++\qmake.conf D:\qt\5.7\mingw53_32\mkspecs\features\spec_post.prf .qmake.stash D:\qt\5.7\mingw53_32\mkspecs\features\exclusive_builds.prf D:\qt\5.7\mingw53_32\mkspecs\features\default_pre.prf D:\qt\5.7\mingw53_32\mkspecs\features\win32\default_pre.prf D:\qt\5.7\mingw53_32\mkspecs\features\resolve_config.prf D:\qt\5.7\mingw53_32\mkspecs\features\exclusive_builds_post.prf D:\qt\5.7\mingw53_32\mkspecs\features\default_post.prf D:\qt\5.7\mingw53_32\mkspecs\features\build_pass.prf D:\qt\5.7\mingw53_32\mkspecs\features\qml_debug.prf D:\qt\5.7\mingw53_32\mkspecs\features\win32\rtti.prf D:\qt\5.7\mingw53_32\mkspecs\features\precompile_header.prf D:\qt\5.7\mingw53_32\mkspecs\features\warn_on.prf D:\qt\5.7\mingw53_32\mkspecs\features\qt.prf D:\qt\5.7\mingw53_32\mkspecs\features\resources.prf D:\qt\5.7\mingw53_32\mkspecs\features\moc.prf D:\qt\5.7\mingw53_32\mkspecs\features\win32\opengl.prf D:\qt\5.7\mingw53_32\mkspecs\features\uic.prf D:\qt\5.7\mingw53_32\mkspecs\features\file_copies.prf D:\qt\5.7\mingw53_32\mkspecs\features\win32\windows.prf D:\qt\5.7\mingw53_32\mkspecs\features\testcase_targets.prf D:\qt\5.7\mingw53_32\mkspecs\features\exceptions.prf D:\qt\5.7\mingw53_32\mkspecs\features\yacc.prf D:\qt\5.7\mingw53_32\mkspecs\features\lex.prf ..\TrabalhoDeCg\Trabalho.pro D:\qt\5.7\mingw53_32\lib\qtmain.prl D:\qt\5.7\mingw53_32\lib\Qt5Widgets.prl D:\qt\5.7\mingw53_32\lib\Qt5Gui.prl D:\qt\5.7\mingw53_32\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\mainwindow.o release\vector.o release\ray.o release\camera.o release\color.o release\light.o release\sphere.o release\object.o release\plane.o release\triangle.o release\objreader.o release\primitive.o release\torus.o release\material.o release\cubo.o release\wind.o release\mesa.o release\hex.o release\bed.o release\moc_mainwindow.o
+	-$(DEL_FILE) release\main.o release\mainwindow.o release\vector.o release\ray.o release\camera.o release\color.o release\light.o release\sphere.o release\object.o release\plane.o release\triangle.o release\objreader.o release\primitive.o release\torus.o release\material.o release\cubo.o release\wind.o release\mesa.o release\hex.o release\bed.o release\laptop.o release\lamp.o release\chair.o release\tv.o release\desk.o release\closet.o release\cenario.o release\canto.o release\moc_mainwindow.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -504,6 +536,44 @@ release/mainwindow.o: ../TrabalhoDeCg/mainwindow.cpp ../TrabalhoDeCg/mainwindow.
 		D:/qt/5.7/mingw53_32/include/QtWidgets/qtabwidget.h \
 		D:/qt/5.7/mingw53_32/include/QtGui/qicon.h \
 		ui_mainwindow.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/QVariant \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QAction \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qaction.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qactiongroup.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QApplication \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qapplication.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qcoreapplication.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qeventloop.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qguiapplication.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qinputmethod.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QButtonGroup \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QGraphicsView \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qgraphicsview.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qpainter.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qtextoption.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qpen.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qscrollarea.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qframe.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qgraphicsscene.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QHeaderView \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qheaderview.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qstyleoption.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		D:/qt/5.7/mingw53_32/include/QtGui/qvalidator.h \
+		D:/qt/5.7/mingw53_32/include/QtCore/qregularexpression.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qslider.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qabstractslider.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qstyle.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qtabbar.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/qrubberband.h \
+		D:/qt/5.7/mingw53_32/include/QtWidgets/QWidget \
 		../TrabalhoDeCg/primitive.h \
 		../TrabalhoDeCg/material.h \
 		../TrabalhoDeCg/color.h \
@@ -520,7 +590,15 @@ release/mainwindow.o: ../TrabalhoDeCg/mainwindow.cpp ../TrabalhoDeCg/mainwindow.
 		../TrabalhoDeCg/wind.h \
 		../TrabalhoDeCg/mesa.h \
 		../TrabalhoDeCg/hex.h \
-		../TrabalhoDeCg/bed.h
+		../TrabalhoDeCg/bed.h \
+		../TrabalhoDeCg/closet.h \
+		../TrabalhoDeCg/lamp.h \
+		../TrabalhoDeCg/laptop.h \
+		../TrabalhoDeCg/chair.h \
+		../TrabalhoDeCg/desk.h \
+		../TrabalhoDeCg/tv.h \
+		../TrabalhoDeCg/cenario.h \
+		../TrabalhoDeCg/canto.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\TrabalhoDeCg\mainwindow.cpp
 
 release/vector.o: ../TrabalhoDeCg/vector.cpp ../TrabalhoDeCg/vector.h
@@ -655,6 +733,86 @@ release/bed.o: ../TrabalhoDeCg/bed.cpp ../TrabalhoDeCg/bed.h \
 		../TrabalhoDeCg/primitive.h \
 		../TrabalhoDeCg/objreader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\bed.o ..\TrabalhoDeCg\bed.cpp
+
+release/laptop.o: ../TrabalhoDeCg/laptop.cpp ../TrabalhoDeCg/laptop.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\laptop.o ..\TrabalhoDeCg\laptop.cpp
+
+release/lamp.o: ../TrabalhoDeCg/lamp.cpp ../TrabalhoDeCg/lamp.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\lamp.o ..\TrabalhoDeCg\lamp.cpp
+
+release/chair.o: ../TrabalhoDeCg/chair.cpp ../TrabalhoDeCg/chair.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\chair.o ..\TrabalhoDeCg\chair.cpp
+
+release/tv.o: ../TrabalhoDeCg/tv.cpp ../TrabalhoDeCg/tv.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\tv.o ..\TrabalhoDeCg\tv.cpp
+
+release/desk.o: ../TrabalhoDeCg/desk.cpp ../TrabalhoDeCg/desk.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\desk.o ..\TrabalhoDeCg\desk.cpp
+
+release/closet.o: ../TrabalhoDeCg/closet.cpp ../TrabalhoDeCg/closet.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\closet.o ..\TrabalhoDeCg\closet.cpp
+
+release/cenario.o: ../TrabalhoDeCg/cenario.cpp ../TrabalhoDeCg/cenario.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/cubo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\cenario.o ..\TrabalhoDeCg\cenario.cpp
+
+release/canto.o: ../TrabalhoDeCg/canto.cpp ../TrabalhoDeCg/canto.h \
+		../TrabalhoDeCg/object.h \
+		../TrabalhoDeCg/material.h \
+		../TrabalhoDeCg/color.h \
+		../TrabalhoDeCg/ray.h \
+		../TrabalhoDeCg/vector.h \
+		../TrabalhoDeCg/primitive.h \
+		../TrabalhoDeCg/objreader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\canto.o ..\TrabalhoDeCg\canto.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_mainwindow.o release\moc_mainwindow.cpp

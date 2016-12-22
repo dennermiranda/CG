@@ -19,5 +19,13 @@ INPUT(
 ./release\mesa.o
 ./release\hex.o
 ./release\bed.o
+./release\laptop.o
+./release\lamp.o
+./release\chair.o
+./release\tv.o
+./release\desk.o
+./release\closet.o
+./release\cenario.o
+./release\canto.o
 ./release\moc_mainwindow.o
 );

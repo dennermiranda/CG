@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui opengl
-#LIBS = -lopengl32 -lglut32
+LIBS = -lopengl32 -lglut32
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,13 +25,11 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     gldisplaywidget.h \
     bed2.h \
-    canto.h \
     chair.h \
     closet.h \
     desk.h \
     lamp.h \
     laptop.h \
-    som.h \
     tv.h \
     vector.h \
     triangle.h \
